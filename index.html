@@ -109,6 +109,32 @@
       height: auto;
       display: block;
     }
+    details {
+      background-color: #eef5f9;
+      border-left: 4px solid #007BFF;
+      padding: 10px 15px;
+      margin-bottom: 10px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    details summary {
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    details[open] {
+      background-color: #ddeefc;
+    }
+    .grid-dos-columnas {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    @media screen and (max-width: 768px) {
+      .grid-dos-columnas {
+        grid-template-columns: 1fr !important;
+      }
+    }
   </style>
 </head>
 <body>
@@ -117,54 +143,52 @@
   <img src="https://i.postimg.cc/gcX7rNgd/Logo-PBI.png" alt="Logo PBI">
 </header>
 <div id="barraProgreso" style="height: 6px; background-color: #007BFF; width: 0%; position: fixed; top: 0; left: 0; z-index: 999; transition: width 0.4s;"></div>
-
 <div class="container">
-
-  <!-- Bloque Inicial -->
   <section class="active">
     <div class="seccion-contenido">
       <h2>👋 Bienvenido a la Inducción HSEQ</h2>
       <p>Esta inducción está diseñada para brindarte la información clave que necesitas para actuar de forma <strong>segura</strong>, <strong>responsable</strong> y en coherencia con nuestra <strong>cultura HSEQ</strong>.</p>
       <p>📌 La inducción es <strong>obligatoria</strong>. Su aprobación es requisito previo para cualquier ingreso o actividad dentro de nuestras instalaciones o funciones administrativas u operativas.</p>
-      <div class="imagen-seccion">
+      <div class="imagen-seccion" style="margin-top: 30px;">
         <img src="https://i.postimg.cc/J4Kr5Zw3/induccion-bienvenida.jpg" alt="Bienvenida HSEQ">
       </div>
       <p style="font-weight: bold; color: #007BFF; text-align: center;">¡Gracias por sumarte a un entorno más seguro, eficiente y sostenible! 🌱</p>
     </div>
   </section>
-
-  <!-- Bloque I - Introducción SIG -->
   <section>
     <div class="img-superior-derecha">
       <img src="https://i.postimg.cc/CLSFNhyN/LOGO-PBI-CASCO-BLANCO.png" alt="Personaje PBI">
     </div>
     <h2>1. SISTEMA INTEGRADO DE GESTIÓN – Introducción</h2>
     <div class="seccion-contenido">
-      <div class="card">
-        <p>El <strong>Sistema Integrado de Gestión (SIG)</strong> es el conjunto de políticas, procesos, procedimientos y recursos que aseguran el cumplimiento de los requisitos en:</p>
+      <details open>
+        <summary>📘 ¿Qué es el SIG?</summary>
+        <p>El Sistema Integrado de Gestión (SIG) es el conjunto de políticas, procesos, procedimientos y recursos que aseguran el cumplimiento de los requisitos en:</p>
         <ul>
-          <li>✅ <strong>Calidad:</strong> productos y servicios confiables.</li>
-          <li>✅ <strong>Seguridad y Salud en el Trabajo:</strong> protección integral.</li>
-          <li>✅ <strong>Ambiente:</strong> prevención de impactos y cumplimiento legal.</li>
+          <li><strong>Calidad:</strong> productos y servicios confiables.</li>
+          <li><strong>Seguridad y Salud en el Trabajo:</strong> protección integral.</li>
+          <li><strong>Ambiente:</strong> prevención de impactos y cumplimiento legal.</li>
         </ul>
-      </div>
+      </details>
       <div class="imagen-seccion">
         <img src="https://i.postimg.cc/Z5vZmw6s/sig-ilustracion.jpg" alt="Ilustración SIG">
       </div>
-      <p>📌 Nuestro SIG se basa en normas como <strong>ISO 9001, ISO 14001 y ISO 45001</strong>, además de requisitos legales y contractuales del sector Oil & Gas.</p>
-      <p>🧠 Entender cómo funciona el SIG es clave para prevenir incidentes, cumplir compromisos y asegurar el éxito de nuestras operaciones.</p>
+      <details>
+        <summary>📌 Fundamento normativo</summary>
+        <p>Nuestro SIG se basa en normas como <strong>ISO 9001, ISO 14001 y ISO 45001</strong>, además de requisitos legales, contractuales y del sector Oil & Gas.</p>
+      </details>
+      <details>
+        <summary>🧠 ¿Por qué es importante?</summary>
+        <p>Entender cómo funciona el SIG es clave para prevenir incidentes, cumplir compromisos y asegurar el éxito de nuestras operaciones.</p>
+      </details>
       <p style="font-weight: bold; color: #006599; text-align: center;">¡Todos hacemos parte del SIG! Tu rol es fundamental para mantenerlo activo y en mejora continua.</p>
     </div>
   </section>
-
 </div>
-
-<!-- Navegación -->
 <div class="nav-buttons">
   <button id="btnAnterior" onclick="prevSection()">Anterior</button>
   <button id="btnSiguiente" onclick="nextSection()">Siguiente</button>
 </div>
-
 <script>
   let current = 0;
   const sections = document.querySelectorAll("section");
@@ -178,24 +202,22 @@
     const progreso = ((index + 1) / sections.length) * 100;
     document.getElementById("barraProgreso").style.width = progreso + "%";
   }
-
   function nextSection() {
     if (current < sections.length - 1) {
       current++;
       show(current);
     }
   }
-
   function prevSection() {
     if (current > 0) {
       current--;
       show(current);
     }
   }
-
   document.addEventListener("DOMContentLoaded", () => show(current));
 </script>
 </body>
 </html>
+
 
 
