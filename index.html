@@ -1,60 +1,201 @@
-<section class="active">
-  <div class="seccion-contenido">
-    <h2>👋 Bienvenido a la Inducción HSEQ</h2>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inducción HSEQ – PBI</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #003366;
+      color: white;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    header img {
+      max-height: 60px;
+      max-width: 140px;
+      object-fit: contain;
+    }
+    .container {
+      background-color: #fff;
+      padding: 40px;
+      max-width: 1000px;
+      margin: 20px auto;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    section {
+      display: none;
+      opacity: 0;
+      transition: opacity 0.6s ease-in-out;
+    }
+    section.active {
+      display: block;
+      opacity: 1;
+    }
+    .nav-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin: 20px auto;
+      max-width: 1000px;
+    }
+    button {
+      background-color: #006599;
+      color: white;
+      font-weight: bold;
+      font-size: 16px;
+      padding: 12px 24px;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #004d73;
+    }
+    h1, h2 {
+      color: #006599;
+    }
+    .card {
+      background: #eef5f9;
+      border-left: 4px solid #007BFF;
+      padding: 15px;
+      margin-bottom: 15px;
+      border-radius: 6px;
+    }
+    .seccion-contenido {
+      background-color: #eef5f9;
+      border-left: 6px solid #007BFF;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+      margin-bottom: 30px;
+    }
+    .imagen-seccion {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .imagen-seccion img {
+      max-width: 100%;
+      height: auto;
+      max-height: 350px;
+      border-radius: 12px;
+      border: 1px solid #ccc;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+    .imagen-seccion img:hover {
+      transform: scale(1.02);
+    }
+    .img-superior-derecha {
+      float: right;
+      margin-left: 20px;
+      margin-top: -10px;
+      margin-bottom: 10px;
+      max-width: 90px;
+    }
+    .img-superior-derecha img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div><strong>Inducción HSEQ – PBI</strong></div>
+  <img src="https://i.postimg.cc/gcX7rNgd/Logo-PBI.png" alt="Logo PBI">
+</header>
+<div id="barraProgreso" style="height: 6px; background-color: #007BFF; width: 0%; position: fixed; top: 0; left: 0; z-index: 999; transition: width 0.4s;"></div>
 
-    <p style="font-size: 16px; color: #333; margin-top: 15px;">
-      Esta inducción está diseñada para brindarte la información clave que necesitas para actuar de forma <strong>segura</strong>, <strong>responsable</strong> y en coherencia con nuestra <strong>cultura HSEQ</strong>.
-    </p>
+<div class="container">
 
-    <p style="font-size: 16px; color: #333;">
-      📌 La inducción es <strong>obligatoria</strong>. Su aprobación es requisito previo para cualquier ingreso o actividad dentro de nuestras instalaciones o funciones operativas y administrativas.
-    </p>
-
-    <p style="font-size: 16px; color: #007BFF; font-weight: bold; text-align: center; margin-top: 25px;">
-      ¡Gracias por sumarte a un entorno más seguro, eficiente y sostenible! 🌱
-    </p>
-
-    <div class="imagen-seccion" style="margin-top: 30px;">
-      <img src="https://i.postimg.cc/J4Kr5Zw3/induccion-bienvenida.jpg" alt="Ilustración de bienvenida a inducción HSEQ">
+  <!-- Bloque Inicial -->
+  <section class="active">
+    <div class="seccion-contenido">
+      <h2>👋 Bienvenido a la Inducción HSEQ</h2>
+      <p>Esta inducción está diseñada para brindarte la información clave que necesitas para actuar de forma <strong>segura</strong>, <strong>responsable</strong> y en coherencia con nuestra <strong>cultura HSEQ</strong>.</p>
+      <p>📌 La inducción es <strong>obligatoria</strong>. Su aprobación es requisito previo para cualquier ingreso o actividad dentro de nuestras instalaciones o funciones administrativas u operativas.</p>
+      <div class="imagen-seccion">
+        <img src="https://i.postimg.cc/J4Kr5Zw3/induccion-bienvenida.jpg" alt="Bienvenida HSEQ">
+      </div>
+      <p style="font-weight: bold; color: #007BFF; text-align: center;">¡Gracias por sumarte a un entorno más seguro, eficiente y sostenible! 🌱</p>
     </div>
-  </div>
-</section>
-<section>
-  <div class="img-superior-derecha">
-    <img src="https://i.postimg.cc/CLSFNhyN/LOGO-PBI-CASCO-BLANCO.png" alt="Personaje PBI con EPP">
-  </div>
+  </section>
 
-  <h2>1. SISTEMA INTEGRADO DE GESTIÓN – Introducción</h2>
-
-  <div class="seccion-contenido">
-
-    <div class="card" style="background: #e6f2ff; border-left: 6px solid #007BFF;">
-      <p style="font-size: 16px; color: #003366;">
-        El <strong>Sistema Integrado de Gestión (SIG)</strong> de nuestra organización es el conjunto de políticas, procesos, procedimientos y recursos que permiten asegurar el cumplimiento de los requisitos en:
-      </p>
-      <ul style="margin-top: 10px;">
-        <li>✅ <strong>Calidad</strong> en los productos y servicios ofrecidos.</li>
-        <li>✅ <strong>Seguridad y Salud en el Trabajo</strong>, protegiendo la integridad de los trabajadores.</li>
-        <li>✅ <strong>Ambiente</strong>, minimizando impactos y cumpliendo con la normatividad ambiental.</li>
-      </ul>
+  <!-- Bloque I - Introducción SIG -->
+  <section>
+    <div class="img-superior-derecha">
+      <img src="https://i.postimg.cc/CLSFNhyN/LOGO-PBI-CASCO-BLANCO.png" alt="Personaje PBI">
     </div>
-
-    <div class="imagen-seccion" style="margin-top: 30px;">
-      <img src="https://i.postimg.cc/Z5vZmw6s/sig-ilustracion.jpg" alt="Ilustración del Sistema Integrado de Gestión">
+    <h2>1. SISTEMA INTEGRADO DE GESTIÓN – Introducción</h2>
+    <div class="seccion-contenido">
+      <div class="card">
+        <p>El <strong>Sistema Integrado de Gestión (SIG)</strong> es el conjunto de políticas, procesos, procedimientos y recursos que aseguran el cumplimiento de los requisitos en:</p>
+        <ul>
+          <li>✅ <strong>Calidad:</strong> productos y servicios confiables.</li>
+          <li>✅ <strong>Seguridad y Salud en el Trabajo:</strong> protección integral.</li>
+          <li>✅ <strong>Ambiente:</strong> prevención de impactos y cumplimiento legal.</li>
+        </ul>
+      </div>
+      <div class="imagen-seccion">
+        <img src="https://i.postimg.cc/Z5vZmw6s/sig-ilustracion.jpg" alt="Ilustración SIG">
+      </div>
+      <p>📌 Nuestro SIG se basa en normas como <strong>ISO 9001, ISO 14001 y ISO 45001</strong>, además de requisitos legales y contractuales del sector Oil & Gas.</p>
+      <p>🧠 Entender cómo funciona el SIG es clave para prevenir incidentes, cumplir compromisos y asegurar el éxito de nuestras operaciones.</p>
+      <p style="font-weight: bold; color: #006599; text-align: center;">¡Todos hacemos parte del SIG! Tu rol es fundamental para mantenerlo activo y en mejora continua.</p>
     </div>
+  </section>
 
-    <p style="margin-top: 20px;">
-      📌 Nuestro SIG se basa en normas reconocidas como <strong>ISO 9001</strong> (calidad), <strong>ISO 14001</strong> (ambiental) y <strong>ISO 45001</strong> (seguridad y salud), así como en requisitos legales, contractuales y del sector Oil & Gas.
-    </p>
+</div>
 
-    <p style="margin-top: 10px;">
-      🧠 Entender cómo funciona el SIG es fundamental para todos, ya que de su correcta aplicación depende el éxito de la operación, la prevención de incidentes y el cumplimiento de compromisos con partes interesadas.
-    </p>
+<!-- Navegación -->
+<div class="nav-buttons">
+  <button id="btnAnterior" onclick="prevSection()">Anterior</button>
+  <button id="btnSiguiente" onclick="nextSection()">Siguiente</button>
+</div>
 
-    <p style="font-weight: bold; color: #006599; text-align: center; margin-top: 30px;">
-      ¡Todos hacemos parte del SIG! Tu rol es clave para mantenerlo vivo, útil y en mejora continua.
-    </p>
+<script>
+  let current = 0;
+  const sections = document.querySelectorAll("section");
+  const btnAnterior = document.getElementById("btnAnterior");
+  const btnSiguiente = document.getElementById("btnSiguiente");
 
-  </div>
-</section>
+  function show(index) {
+    sections.forEach((s, i) => s.classList.toggle("active", i === index));
+    btnAnterior.style.display = (index === 0) ? "none" : "inline-block";
+    btnSiguiente.style.display = (index === sections.length - 1) ? "none" : "inline-block";
+    const progreso = ((index + 1) / sections.length) * 100;
+    document.getElementById("barraProgreso").style.width = progreso + "%";
+  }
+
+  function nextSection() {
+    if (current < sections.length - 1) {
+      current++;
+      show(current);
+    }
+  }
+
+  function prevSection() {
+    if (current > 0) {
+      current--;
+      show(current);
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", () => show(current));
+</script>
+</body>
+</html>
+
 
