@@ -947,7 +947,7 @@ section ul li input[type="checkbox"] {
 
 <div class="nav-buttons">
   <button id="btnAnterior" onclick="prevSection()">⬅️ Anterior</button>
-  <button id="btnSiguiente" onclick="nextSection()" disabled style="cursor: not-allowed; opacity: 0.6;">Siguiente ➡️</button>
+  <button id="btnSiguiente" onclick="nextSection()">Siguiente ➡️</button>
 </div>
 
 <script>
@@ -971,9 +971,9 @@ section ul li input[type="checkbox"] {
     const advertencia = document.getElementById("advertencia-check");
     if (advertencia) advertencia.remove();
 
-    // Si estamos en la sección de verificación, reiniciar estado del botón
+    // Verificar si estamos en la sección de verificación
     if (sections[index].id === "verificacion-cap1") {
-      actualizarBotonSiguiente(); // estado según checkboxes
+      actualizarBotonSiguiente(); // activa o desactiva según los checkboxes
     } else {
       btnSiguiente.disabled = false;
       btnSiguiente.style.cursor = "pointer";
@@ -1014,24 +1014,29 @@ section ul li input[type="checkbox"] {
     }
   }
 
+  function actualizarBotonSiguiente() {
+    const seccionActual = sections[current];
+    if (seccionActual.id !== "verificacion-cap1") return;
+
+    const checkboxes = seccionActual.querySelectorAll('input[type="checkbox"]');
+    const todosMarcados = Array.from(checkboxes).every(cb => cb.checked);
+
+    btnSiguiente.disabled = !todosMarcados;
+    btnSiguiente.style.cursor = todosMarcados ? "pointer" : "not-allowed";
+    btnSiguiente.style.opacity = todosMarcados ? "1" : "0.6";
+  }
+
   document.addEventListener("DOMContentLoaded", () => {
     show(current);
 
     const checkboxes = document.querySelectorAll('#verificacion-cap1 input[type="checkbox"]');
-    function actualizarBotonSiguiente() {
-      const todosMarcados = Array.from(checkboxes).every(cb => cb.checked);
-      btnSiguiente.disabled = !todosMarcados;
-      btnSiguiente.style.cursor = todosMarcados ? "pointer" : "not-allowed";
-      btnSiguiente.style.opacity = todosMarcados ? "1" : "0.6";
-    }
-
     checkboxes.forEach(cb => cb.addEventListener("change", actualizarBotonSiguiente));
-    actualizarBotonSiguiente();
   });
 </script>
 
 </body>
 </html>
+
 
 
 
