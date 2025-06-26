@@ -894,38 +894,29 @@ section ul li input[type="checkbox"] {
       </div>
     </div>
   <section>
-  <section>  
-  <div class="img-superior-derecha">
-    <img src="https://i.postimg.cc/CLSFNhyN/LOGO-PBI-CASCO-BLANCO.png" alt="Personaje PBI con EPP">
-  </div>
-
-  <h2>🧾 13. RECOMENDACIONES FINALES ANTES DE INGRESAR</h2>
-  <p>Antes de iniciar tu visita, asegúrate de cumplir con los siguientes puntos:</p>
+  <section id="verificacion-cap1" class="section">
+  <h2>🧠 Revisión de Comprensión – Capítulo I</h2>
+  <p>Antes de continuar al siguiente capítulo, confirma que comprendes los siguientes aspectos clave:</p>
 
   <ul style="list-style: none; padding-left: 0;">
-    <li><label><input type="checkbox" /> ✅ Recibiste la charla de inducción completa.</label></li>
-    <li><label><input type="checkbox" /> ✅ Usas el EPP completo requerido para el área a visitar.</label></li>
-    <li><label><input type="checkbox" /> ✅ Conoces los puntos de encuentro y rutas de evacuación.</label></li>
-    <li><label><input type="checkbox" /> ✅ Entiendes las tareas de alto riesgo y sus restricciones.</label></li>
-    <li><label><input type="checkbox" /> ✅ No portar celular mientras estés en áreas operativas.</label></li>
-    <li><label><input type="checkbox" /> ✅ Cumples las normas de seguridad vial y comportamiento.</label></li>
-    <li><label><input type="checkbox" /> ✅ Tienes el Permiso de Trabajo o autorización, si aplica.</label></li>
+    <li><label><input type="checkbox" /> ✅ Entiendo qué es una acción correctiva y cuándo aplicarla.</label></li>
+    <li><label><input type="checkbox" /> ✅ Reconozco la diferencia entre acción preventiva y corrección.</label></li>
+    <li><label><input type="checkbox" /> ✅ Sé cómo acceder al procedimiento FOR-HSEQ-54 y aplicarlo.</label></li>
+    <li><label><input type="checkbox" /> ✅ Comprendí el flujo de pasos para atender una acción en el SIG.</label></li>
+    <li><label><input type="checkbox" /> ✅ Sé qué es una salida no conforme y cómo gestionarla.</label></li>
+    <li><label><input type="checkbox" /> ✅ Comprendí la importancia de los documentos controlados y cómo acceder a ellos.</label></li>
   </ul>
 
-  <p style="margin-top: 20px;"><strong>📌 Recuerda:</strong> Tu seguridad y la de todos depende de tu actitud y cumplimiento. ¡Gracias por contribuir a un entorno seguro! 🙌</p>
+  <p><strong>📌 Nota:</strong> Debes confirmar todos los ítems para avanzar al Capítulo II.</p>
 </section>
-
-   <section>
-  <div class="img-superior-derecha">
-    <img src="https://i.postimg.cc/CLSFNhyN/LOGO-PBI-CASCO-BLANCO.png" alt="Personaje PBI con EPP">
-  </div>
-    <h2>Capítulo II – Seguridad y Salud en el Trabajo (SST)</h2>
-    <p>Bienvenido al segundo módulo de esta inducción. Aquí abordaremos aspectos claves relacionados con la prevención de riesgos laborales, el uso adecuado del EPP y los principales lineamientos del sistema de gestión en SST.</p>
-  </section>      
+   <section id="capitulo2" class="section">
+  <h2>Capítulo II – Seguridad y Salud en el Trabajo (SST)</h2>
+  <p>Bienvenido al segundo módulo de esta inducción...</p>
+</section>
 </div>
 <div class="nav-buttons">
-  <button id="btnAnterior" onclick="prevSection()">Anterior</button>
-  <button id="btnSiguiente" onclick="nextSection()">Siguiente</button>
+  <button id="btnAnterior" onclick="prevSection()">⬅️ Anterior</button>
+  <button id="btnSiguiente" onclick="nextSection()">Siguiente ➡️</button>
 </div>
 
 <script>
@@ -943,17 +934,19 @@ section ul li input[type="checkbox"] {
     btnSiguiente.style.display = (index === sections.length - 1) ? "none" : "inline-block";
 
     const progreso = ((index + 1) / sections.length) * 100;
-    document.getElementById("barraProgreso").style.width = progreso + "%";
+    const barra = document.getElementById("barraProgreso");
+    if (barra) barra.style.width = progreso + "%";
 
-    // Elimina advertencia si se retrocede
     const advertencia = document.getElementById("advertencia-check");
     if (advertencia) advertencia.remove();
   }
 
   function nextSection() {
-    // Verifica si estamos en la sección 13 (índice 12)
-    if (current === 12) {
-      const checkboxes = sections[current].querySelectorAll('input[type="checkbox"]');
+    const seccionActual = sections[current];
+
+    // Valida si es la sección 13 (puedes ajustar si cambia el orden)
+    if (seccionActual.querySelectorAll('input[type="checkbox"]').length > 0) {
+      const checkboxes = seccionActual.querySelectorAll('input[type="checkbox"]');
       const todosMarcados = Array.from(checkboxes).every(cb => cb.checked);
 
       if (!todosMarcados) {
@@ -963,9 +956,9 @@ section ul li input[type="checkbox"] {
           advertencia.textContent = "⚠️ Por favor marca todos los ítems antes de continuar.";
           advertencia.style.color = "red";
           advertencia.style.marginTop = "15px";
-          sections[current].appendChild(advertencia);
+          seccionActual.appendChild(advertencia);
         }
-        return; // No avanza
+        return;
       }
     }
 
@@ -987,6 +980,7 @@ section ul li input[type="checkbox"] {
 
 </body>
 </html>
+
 
 
 
