@@ -330,6 +330,44 @@
       border-radius: 8px;
       margin-top: 30px;
     }
+    .quiz-section {
+  max-width: 800px;
+  margin: 40px auto;
+  background: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+.quiz-section h3 {
+  text-align: center;
+  color: #003366;
+}
+.quiz-section label {
+  display: block;
+  margin: 15px 0;
+  font-size: 0.95em;
+}
+#next-section-btn {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background: #1976D2;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+#capitulo2 {
+  display: none;
+  animation: fadeIn 0.8s ease-in-out;
+  padding: 40px 20px;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
   </style>
 </head>
 <body>
@@ -847,7 +885,21 @@
       </div>
     </div>
   </section>
-        
+  <section class="quiz-section">
+    <h3>🧠 Antes de continuar: Evalúa lo aprendido</h3>
+    <form id="quiz-form">
+      <label><input type="checkbox" name="q1"> Entiendo qué es una acción correctiva y cuándo aplicarla.</label>
+      <label><input type="checkbox" name="q2"> Reconozco la diferencia entre acción preventiva y corrección.</label>
+      <label><input type="checkbox" name="q3"> Sé cómo acceder al procedimiento FOR-HSEQ-54 y aplicarlo.</label>
+      <label><input type="checkbox" name="q4"> Comprendí el flujo de pasos para atender una acción en el SIG.</label>
+      <button id="next-section-btn" onclick="return verificarRespuestas()">✅ Continuar al Capítulo II: SST</button>
+    </form>
+  </section>
+
+  <section id="capitulo2">
+    <h2>Capítulo II – Seguridad y Salud en el Trabajo (SST)</h2>
+    <p>Bienvenido al segundo módulo de esta inducción. Aquí abordaremos aspectos claves relacionados con la prevención de riesgos laborales, el uso adecuado del EPP y los principales lineamientos del sistema de gestión en SST.</p>
+  </section>      
 </div>
 <div class="nav-buttons">
   <button id="btnAnterior" onclick="prevSection()">Anterior</button>
@@ -878,6 +930,22 @@
       show(current);
     }
   }
+    // 👉 AQUÍ VA LA FUNCIÓN DEL QUIZ:
+  function verificarRespuestas() {
+    const checkboxes = document.querySelectorAll('#quiz-form input[type="checkbox"]');
+    for (let i = 0; i < checkboxes.length; i++) {
+      if (!checkboxes[i].checked) {
+        alert('⛔ Por favor, asegúrate de marcar todas las casillas antes de continuar.');
+        return false;
+      }
+    }
+    document.getElementById('capitulo2').style.display = 'block';
+    document.querySelector('.quiz-section').style.display = 'none';
+    window.scrollTo({ top: document.getElementById('capitulo2').offsetTop, behavior: 'smooth' });
+    return false;
+  }
+
+  // Mostrar la primera sección al cargar
   document.addEventListener("DOMContentLoaded", () => show(current));
 </script>
 </body>
