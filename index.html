@@ -263,6 +263,60 @@
     }
     .salida-no-conforme strong {
       color: #002F5E;
+       }
+    .acciones-sig-section {
+      max-width: 700px;
+      margin: 60px auto;
+      text-align: center;
+      position: relative;
+    }
+    .acciones-sig-section .nivel {
+      width: 0;
+      margin: 0 auto;
+      border-left: 150px solid transparent;
+      border-right: 150px solid transparent;
+      padding: 10px;
+      color: #fff;
+      font-weight: bold;
+      text-align: center;
+      font-size: 0.95em;
+      line-height: 1.3em;
+      box-sizing: content-box;
+      animation: fadeIn 1s ease-in;
+      opacity: 0;
+      animation-fill-mode: forwards;
+    }
+    .accion-preventiva {
+      border-bottom: 60px solid #689F38;
+      animation-delay: 0.6s;
+    }
+    .accion-correctiva {
+      border-bottom: 60px solid #00796B;
+      margin-top: -20px;
+      animation-delay: 0.4s;
+    }
+    .correccion {
+      border-bottom: 60px solid #0288D1;
+      margin-top: -20px;
+      animation-delay: 0.2s;
+    }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .acciones-sig-section .hseq-note {
+      background: #e3f2fd;
+      padding: 15px;
+      border-left: 6px solid #1976D2;
+      border-radius: 8px;
+      margin-top: 30px;
+    }
   </style>
 </head>
 <body>
@@ -717,7 +771,29 @@
       <strong>La gestión de salidas no conformes</strong> debe realizarse acorde a lo descrito en el procedimiento
       <strong>PRO-HSEQ-03 OPORTUNIDADES DE MEJORA, ACCIONES CORRECTIVAS Y PREVENTIVAS</strong>.
     </p>
-  </section>       
+  </section>
+  <section class="acciones-sig-section">
+    <div class="img-superior-derecha">
+      <img src="https://i.postimg.cc/CLSFNhyN/LOGO-PBI-CASCO-BLANCO.png" alt="Pirámide SIG">
+    </div>
+    <h2>8. TIPO DE ACCIONES EN EL SIG</h2>
+    <div class="nivel accion-preventiva">
+      🔰 Acción Preventiva<br>
+      Eliminar la causa de una no conformidad potencial.
+    </div>
+    <div class="nivel accion-correctiva">
+      🛠 Acción Correctiva<br>
+      Eliminar la causa de una no conformidad detectada.
+    </div>
+    <div class="nivel correccion">
+      ✅ Corrección<br>
+      Eliminar o reparar la no conformidad detectada.
+    </div>
+    <div class="hseq-note">
+      <strong>📌 Nota:</strong> En <strong>Petroleum Blending International S.A.S E.S.P</strong> estas acciones se documentan mediante procedimientos y formatos cuando se presentan hallazgos en auditorías, inspecciones u otros mecanismos de control.
+    </div>
+  </section>
+        
 </div>
 <div class="nav-buttons">
   <button id="btnAnterior" onclick="prevSection()">Anterior</button>
