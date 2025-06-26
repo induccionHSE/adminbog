@@ -886,17 +886,19 @@
     </div>
   </section>
   <section class="quiz-section">
-    <h3>🧠 Antes de continuar: Evalúa lo aprendido</h3>
-    <form id="quiz-form">
-      <label><input type="checkbox" name="q1"> Entiendo qué es una acción correctiva y cuándo aplicarla.</label>
-      <label><input type="checkbox" name="q2"> Reconozco la diferencia entre acción preventiva y corrección.</label>
-      <label><input type="checkbox" name="q3"> Sé cómo acceder al procedimiento FOR-HSEQ-54 y aplicarlo.</label>
-      <label><input type="checkbox" name="q4"> Comprendí el flujo de pasos para atender una acción en el SIG.</label>
-      <button id="next-section-btn" onclick="return verificarRespuestas()">✅ Continuar al Capítulo II: SST</button>
-    </form>
-  </section>
+  <h3>🧠 Antes de continuar: Evalúa lo aprendido</h3>
+  <form id="quiz-form">
+    <label><input type="checkbox" name="q1"> Entiendo qué es una acción correctiva y cuándo aplicarla.</label>
+    <label><input type="checkbox" name="q2"> Reconozco la diferencia entre acción preventiva y corrección.</label>
+    <label><input type="checkbox" name="q3"> Sé cómo acceder al procedimiento FOR-HSEQ-54 y aplicarlo.</label>
+    <label><input type="checkbox" name="q4"> Comprendí el flujo de pasos para atender una acción en el SIG.</label>
+    <label><input type="checkbox" name="q5"> Sé qué es una salida no conforme y cómo gestionarla.</label>
+    <label><input type="checkbox" name="q6"> Comprendí la importancia de los documentos controlados y cómo acceder a ellos.</label>
+    <button id="next-section-btn" onclick="return verificarRespuestas()">✅ Continuar al Capítulo II: SST</button>
+  </form>
+</section>
 
-  <section id="capitulo2">
+  <section id="capitulo2" class="section">
     <h2>Capítulo II – Seguridad y Salud en el Trabajo (SST)</h2>
     <p>Bienvenido al segundo módulo de esta inducción. Aquí abordaremos aspectos claves relacionados con la prevención de riesgos laborales, el uso adecuado del EPP y los principales lineamientos del sistema de gestión en SST.</p>
   </section>      
@@ -907,7 +909,7 @@
 </div>
 <script>
   let current = 0;
-  const sections = document.querySelectorAll("section");
+  const sections = document.querySelectorAll("section.section");
   const btnAnterior = document.getElementById("btnAnterior");
   const btnSiguiente = document.getElementById("btnSiguiente");
 
@@ -915,22 +917,22 @@
     sections.forEach((s, i) => s.classList.toggle("active", i === index));
     btnAnterior.style.display = (index === 0) ? "none" : "inline-block";
     btnSiguiente.style.display = (index === sections.length - 1) ? "none" : "inline-block";
-    const progreso = ((index + 1) / sections.length) * 100;
-    document.getElementById("barraProgreso").style.width = progreso + "%";
   }
+
   function nextSection() {
     if (current < sections.length - 1) {
       current++;
       show(current);
     }
   }
+
   function prevSection() {
     if (current > 0) {
       current--;
       show(current);
     }
   }
-    // 👉 AQUÍ VA LA FUNCIÓN DEL QUIZ:
+
   function verificarRespuestas() {
     const checkboxes = document.querySelectorAll('#quiz-form input[type="checkbox"]');
     for (let i = 0; i < checkboxes.length; i++) {
@@ -939,15 +941,20 @@
         return false;
       }
     }
-    document.getElementById('capitulo2').style.display = 'block';
     document.querySelector('.quiz-section').style.display = 'none';
-    window.scrollTo({ top: document.getElementById('capitulo2').offsetTop, behavior: 'smooth' });
+    const capitulo2 = document.getElementById('capitulo2');
+    capitulo2.style.removeProperty('display');
+    current = Array.from(sections).findIndex(s => s.id === "capitulo2");
+    show(current);
+    window.scrollTo({ top: capitulo2.offsetTop, behavior: 'smooth' });
     return false;
   }
 
-  // Mostrar la primera sección al cargar
-  document.addEventListener("DOMContentLoaded", () => show(current));
+  document.addEventListener("DOMContentLoaded", () => {
+    show(current);
+  });
 </script>
+
 </body>
 </html>
 
