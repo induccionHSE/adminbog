@@ -270,20 +270,20 @@
       text-align: center;
       position: relative;
     }
-    .acciones-sig-section .nivel {
-      position: relative;
-      width: 0;
-      margin: 0 auto;
-      border-left: 150px solid transparent;
-      border-right: 150px solid transparent;
-      padding: 10px;
-      font-size: 0.95em;
-      line-height: 1.3em;
-      box-sizing: content-box;
-      animation: fadeIn 1s ease-in;
-      opacity: 0;
-      animation-fill-mode: forwards;
-    }
+.acciones-sig-section .nivel {
+  position: relative;
+  width: 0;
+  margin: 40px auto;
+  border-left: 150px solid transparent;
+  border-right: 150px solid transparent;
+  height: 90px; /* más alto */
+  font-size: 0.95em;
+  line-height: 1.4em;
+  box-sizing: content-box;
+  animation: fadeIn 1s ease-in;
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
     .accion-preventiva {
       border-bottom: 60px solid #689F38;
       animation-delay: 0.6s;
@@ -298,7 +298,7 @@
       margin-top: -20px;
       animation-delay: 0.2s;
     }
-   .nivel .texto-nivel {
+ .nivel .texto-nivel {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -306,11 +306,12 @@
   color: #fff;
   font-weight: bold;
   text-align: center;
-  font-size: 0.85em;
-  width: 220px;
-  line-height: 1.2em;
+  font-size: 0.9em;
+  width: 260px;
+  line-height: 1.3em;
   pointer-events: none;
 }
+
 
     @keyframes fadeIn {
       from {
