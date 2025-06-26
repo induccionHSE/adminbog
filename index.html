@@ -884,21 +884,31 @@
         <p>Monitorear el cumplimiento de las acciones en los plazos definidos, verificar su efectividad y documentar el cierre con evidencia clara.</p>
       </div>
     </div>
-  </section>
-  <section class="quiz-section">
-  <h3>🧠 Antes de continuar: Evalúa lo aprendido</h3>
-  <form id="quiz-form">
-    <label><input type="checkbox" name="q1"> Entiendo qué es una acción correctiva y cuándo aplicarla.</label>
-    <label><input type="checkbox" name="q2"> Reconozco la diferencia entre acción preventiva y corrección.</label>
-    <label><input type="checkbox" name="q3"> Sé cómo acceder al procedimiento FOR-HSEQ-54 y aplicarlo.</label>
-    <label><input type="checkbox" name="q4"> Comprendí el flujo de pasos para atender una acción en el SIG.</label>
-    <label><input type="checkbox" name="q5"> Sé qué es una salida no conforme y cómo gestionarla.</label>
-    <label><input type="checkbox" name="q6"> Comprendí la importancia de los documentos controlados y cómo acceder a ellos.</label>
-    <button id="next-section-btn" onclick="return verificarRespuestas()">✅ Continuar al Capítulo II: SST</button>
-  </form>
+  <section>
+  <div class="img-superior-derecha">
+    <img src="https://i.postimg.cc/CLSFNhyN/LOGO-PBI-CASCO-BLANCO.png" alt="Personaje PBI con EPP">
+  </div>
+
+  <h2>🧾 13. RECOMENDACIONES FINALES ANTES DE INGRESAR</h2>
+  <p>Antes de iniciar tu visita, asegúrate de cumplir con los siguientes puntos:</p>
+
+  <ul style="list-style: none; padding-left: 0;">
+    <li><label><input type="checkbox" /> ✅ Recibiste la charla de inducción completa.</label></li>
+    <li><label><input type="checkbox" /> ✅ Usas el EPP completo requerido para el área a visitar.</label></li>
+    <li><label><input type="checkbox" /> ✅ Conoces los puntos de encuentro y rutas de evacuación.</label></li>
+    <li><label><input type="checkbox" /> ✅ Entiendes las tareas de alto riesgo y sus restricciones.</label></li>
+    <li><label><input type="checkbox" /> ✅ No portar celular mientras estés en áreas operativas.</label></li>
+    <li><label><input type="checkbox" /> ✅ Cumples las normas de seguridad vial y comportamiento.</label></li>
+    <li><label><input type="checkbox" /> ✅ Tienes el Permiso de Trabajo o autorización, si aplica.</label></li>
+  </ul>
+
+  <p style="margin-top: 20px;"><strong>📌 Recuerda:</strong> Tu seguridad y la de todos depende de tu actitud y cumplimiento. ¡Gracias por contribuir a un entorno seguro! 🙌</p>
 </section>
 
-  <section id="capitulo2" class="section">
+   <section>
+  <div class="img-superior-derecha">
+    <img src="https://i.postimg.cc/CLSFNhyN/LOGO-PBI-CASCO-BLANCO.png" alt="Personaje PBI con EPP">
+  </div>
     <h2>Capítulo II – Seguridad y Salud en el Trabajo (SST)</h2>
     <p>Bienvenido al segundo módulo de esta inducción. Aquí abordaremos aspectos claves relacionados con la prevención de riesgos laborales, el uso adecuado del EPP y los principales lineamientos del sistema de gestión en SST.</p>
   </section>      
@@ -907,6 +917,7 @@
   <button id="btnAnterior" onclick="prevSection()">Anterior</button>
   <button id="btnSiguiente" onclick="nextSection()">Siguiente</button>
 </div>
+
 <script>
   let current = 0;
   const sections = document.querySelectorAll("section");
@@ -914,12 +925,40 @@
   const btnSiguiente = document.getElementById("btnSiguiente");
 
   function show(index) {
-    sections.forEach((s, i) => s.classList.toggle("active", i === index));
+    sections.forEach((s, i) => {
+      s.classList.toggle("active", i === index);
+    });
+
     btnAnterior.style.display = (index === 0) ? "none" : "inline-block";
     btnSiguiente.style.display = (index === sections.length - 1) ? "none" : "inline-block";
+
+    const progreso = ((index + 1) / sections.length) * 100;
+    document.getElementById("barraProgreso").style.width = progreso + "%";
+
+    // Elimina advertencia si se retrocede
+    const advertencia = document.getElementById("advertencia-check");
+    if (advertencia) advertencia.remove();
   }
 
   function nextSection() {
+    // Verifica si estamos en la sección 13 (índice 12)
+    if (current === 12) {
+      const checkboxes = sections[current].querySelectorAll('input[type="checkbox"]');
+      const todosMarcados = Array.from(checkboxes).every(cb => cb.checked);
+
+      if (!todosMarcados) {
+        if (!document.getElementById("advertencia-check")) {
+          const advertencia = document.createElement("p");
+          advertencia.id = "advertencia-check";
+          advertencia.textContent = "⚠️ Por favor marca todos los ítems antes de continuar.";
+          advertencia.style.color = "red";
+          advertencia.style.marginTop = "15px";
+          sections[current].appendChild(advertencia);
+        }
+        return; // No avanza
+      }
+    }
+
     if (current < sections.length - 1) {
       current++;
       show(current);
@@ -933,26 +972,7 @@
     }
   }
 
-  function verificarRespuestas() {
-    const checkboxes = document.querySelectorAll('#quiz-form input[type="checkbox"]');
-    for (let i = 0; i < checkboxes.length; i++) {
-      if (!checkboxes[i].checked) {
-        alert('⛔ Por favor, asegúrate de marcar todas las casillas antes de continuar.');
-        return false;
-      }
-    }
-    document.querySelector('.quiz-section').style.display = 'none';
-    const capitulo2 = document.getElementById('capitulo2');
-    capitulo2.style.removeProperty('display');
-    current = Array.from(sections).findIndex(s => s.id === "capitulo2");
-    show(current);
-    window.scrollTo({ top: capitulo2.offsetTop, behavior: 'smooth' });
-    return false;
-  }
-
-  document.addEventListener("DOMContentLoaded", () => {
-    show(current);
-  });
+  document.addEventListener("DOMContentLoaded", () => show(current));
 </script>
 
 </body>
