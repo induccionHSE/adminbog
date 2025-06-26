@@ -944,9 +944,10 @@ section ul li input[type="checkbox"] {
   </p>
 </section>
 </div>
+
 <div class="nav-buttons">
   <button id="btnAnterior" onclick="prevSection()">⬅️ Anterior</button>
-  <button id="btnSiguiente" onclick="nextSection()">Siguiente ➡️</button>
+  <button id="btnSiguiente" onclick="nextSection()" disabled style="cursor: not-allowed; opacity: 0.6;">Siguiente ➡️</button>
 </div>
 
 <script>
@@ -969,18 +970,23 @@ section ul li input[type="checkbox"] {
 
     const advertencia = document.getElementById("advertencia-check");
     if (advertencia) advertencia.remove();
+
+    // Si estamos en la sección de verificación, reiniciar estado del botón
+    if (sections[index].id === "verificacion-cap1") {
+      actualizarBotonSiguiente(); // estado según checkboxes
+    } else {
+      btnSiguiente.disabled = false;
+      btnSiguiente.style.cursor = "pointer";
+      btnSiguiente.style.opacity = "1";
+    }
   }
 
   function nextSection() {
     const seccionActual = sections[current];
 
-    if (seccionActual.querySelectorAll('input[type="checkbox"]').length > 0) {
+    if (seccionActual.id === "verificacion-cap1") {
       const checkboxes = seccionActual.querySelectorAll('input[type="checkbox"]');
       const todosMarcados = Array.from(checkboxes).every(cb => cb.checked);
-
-      // Ajustes visuales del botón Siguiente
-      btnSiguiente.style.cursor = todosMarcados ? 'pointer' : 'not-allowed';
-      btnSiguiente.style.opacity = todosMarcados ? '1' : '0.6';
 
       if (!todosMarcados) {
         if (!document.getElementById("advertencia-check")) {
@@ -1008,7 +1014,20 @@ section ul li input[type="checkbox"] {
     }
   }
 
-  document.addEventListener("DOMContentLoaded", () => show(current));
+  document.addEventListener("DOMContentLoaded", () => {
+    show(current);
+
+    const checkboxes = document.querySelectorAll('#verificacion-cap1 input[type="checkbox"]');
+    function actualizarBotonSiguiente() {
+      const todosMarcados = Array.from(checkboxes).every(cb => cb.checked);
+      btnSiguiente.disabled = !todosMarcados;
+      btnSiguiente.style.cursor = todosMarcados ? "pointer" : "not-allowed";
+      btnSiguiente.style.opacity = todosMarcados ? "1" : "0.6";
+    }
+
+    checkboxes.forEach(cb => cb.addEventListener("change", actualizarBotonSiguiente));
+    actualizarBotonSiguiente();
+  });
 </script>
 
 </body>
