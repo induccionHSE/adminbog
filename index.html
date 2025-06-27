@@ -1037,7 +1037,57 @@ section ul li input[type="checkbox"] {
     ✅ Confirmo que he leído y comprendido las políticas corporativas de PBI.
   </label>
 </section>
+<section id="verificacion-vial" class="section">
+  <div class="img-superior-derecha">
+    <img src="https://i.postimg.cc/CLSFNhyN/LOGO-PBI-CASCO-BLANCO.png" alt="Personaje PBI con EPP">
+  </div>
 
+  <h2>4. POLÍTICAS DE SEGURIDAD VIAL</h2>
+  <p>El compromiso con la seguridad vial es parte esencial de nuestra cultura organizacional. A continuación, se presentan las políticas que deben ser conocidas y respetadas por todos los trabajadores que conducen o se movilizan en actividades de la compañía:</p>
+
+  <details>
+    <summary>🚗 POL-GER-06 – Política de Seguridad Vial</summary>
+    <p>Promueve prácticas seguras de conducción y control del riesgo vial en todas las operaciones de transporte asociadas a PBI. 👉 
+      <a href="https://drive.google.com/open?id=TU_ID_DEL_PDF_1" target="_blank">Ver PDF</a>
+    </p>
+  </details>
+
+  <details>
+    <summary>🎯 POL-GER-11 – Uso del Cinturón de Seguridad</summary>
+    <p>Establece la obligatoriedad del uso correcto del cinturón de seguridad por parte de todos los ocupantes de vehículos. 👉 
+      <a href="https://drive.google.com/open?id=TU_ID_DEL_PDF_2" target="_blank">Ver PDF</a>
+    </p>
+  </details>
+
+  <details>
+    <summary>📡 POL-GER-12 – Uso de Equipos de Comunicación Bidireccional</summary>
+    <p>Regula el uso responsable y seguro de radios, celulares y dispositivos durante la conducción para prevenir accidentes. 👉 
+      <a href="https://drive.google.com/open?id=TU_ID_DEL_PDF_3" target="_blank">Ver PDF</a>
+    </p>
+  </details>
+
+  <details>
+    <summary>⏱️ POL-GER-13 – Regulación de Horas de Descanso y Conducción</summary>
+    <p>Garantiza que todo conductor tenga pausas y descansos adecuados para evitar la fatiga y disminuir riesgos en la vía. 👉 
+      <a href="https://drive.google.com/open?id=TU_ID_DEL_PDF_4" target="_blank">Ver PDF</a>
+    </p>
+  </details>
+
+  <details>
+    <summary>🚦 POL-GER-14 – Regulación de Velocidad</summary>
+    <p>Define límites y condiciones seguras de velocidad según el tipo de vía, entorno y condiciones del vehículo. 👉 
+      <a href="https://drive.google.com/open?id=TU_ID_DEL_PDF_5" target="_blank">Ver PDF</a>
+    </p>
+  </details>
+
+  <p>📌 Conocer y aplicar estas políticas es parte de tu compromiso con la vida, la operación segura y la movilidad responsable.</p>
+
+  <br />
+  <label style="display: flex; align-items: center; gap: 8px;">
+    <input type="checkbox" id="check-vial" />
+    ✅ Confirmo que he leído y comprendido las políticas de seguridad vial de PBI.
+  </label>
+</section>
 
 </div>
 
@@ -1081,6 +1131,10 @@ section ul li input[type="checkbox"] {
       actualizarBotonSiguientePoliticas();
       const checkPoliticas = document.getElementById("check-politicas");
       if (checkPoliticas) checkPoliticas.addEventListener("change", actualizarBotonSiguientePoliticas);
+    } else if (seccionActual.id === "verificacion-vial") {
+      actualizarBotonSiguienteVial();
+      const checkVial = document.getElementById("check-vial");
+      if (checkVial) checkVial.addEventListener("change", actualizarBotonSiguienteVial);
     } else {
       btnSiguiente.disabled = false;
       btnSiguiente.style.cursor = "pointer";
@@ -1138,6 +1192,21 @@ section ul li input[type="checkbox"] {
       }
     }
 
+    if (seccionActual.id === "verificacion-vial") {
+      const checkVial = document.getElementById("check-vial");
+      if (!checkVial.checked) {
+        if (!document.getElementById("advertencia-check")) {
+          const advertencia = document.createElement("p");
+          advertencia.id = "advertencia-check";
+          advertencia.textContent = "⚠️ Debes confirmar que leíste las políticas de seguridad vial antes de continuar.";
+          advertencia.style.color = "red";
+          advertencia.style.marginTop = "15px";
+          seccionActual.appendChild(advertencia);
+        }
+        return;
+      }
+    }
+
     if (current < sections.length - 1) {
       current++;
       show(current);
@@ -1181,11 +1250,19 @@ section ul li input[type="checkbox"] {
     btnSiguiente.style.opacity = checkPoliticas.checked ? "1" : "0.6";
   }
 
+  function actualizarBotonSiguienteVial() {
+    const checkVial = document.getElementById("check-vial");
+    if (!checkVial) return;
+
+    btnSiguiente.disabled = !checkVial.checked;
+    btnSiguiente.style.cursor = checkVial.checked ? "pointer" : "not-allowed";
+    btnSiguiente.style.opacity = checkVial.checked ? "1" : "0.6";
+  }
+
   document.addEventListener("DOMContentLoaded", () => {
     show(current);
   });
 </script>
-
 
 </body>
 </html>
