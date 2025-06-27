@@ -997,6 +997,46 @@ section ul li input[type="checkbox"] {
     </label>
   </div>
 </section>
+<section id="verificacion-politicas" class="section">
+  <div class="img-superior-derecha">
+    <img src="https://i.postimg.cc/CLSFNhyN/LOGO-PBI-CASCO-BLANCO.png" alt="Personaje PBI con EPP">
+  </div>
+
+  <h2>3. POLÍTICAS CORPORATIVAS</h2>
+  <p>Estas son las políticas esenciales en materia de HSEQ que rigen nuestro actuar diario en PBI:</p>
+
+  <details>
+    <summary>📌 Política Integral HSEQ</summary>
+    <p>Establece nuestro compromiso con la protección de la vida, la salud, el ambiente y la calidad en todos los procesos. Promueve la mejora continua, la prevención de incidentes y el cumplimiento de la normatividad aplicable. 👉 
+    <a href="https://drive.google.com/open?id=1To8ksi0_bzYq_hzyExQr8FiCRMw2FOy4" target="_blank">Ver PDF</a></p>
+  </details>
+
+  <details>
+    <summary>🚫 Política de Prevención SPA</summary>
+    <p>Fomenta ambientes seguros y saludables mediante acciones de promoción, prevención y acompañamiento, orientadas a reducir los riesgos asociados al uso de sustancias psicoactivas en contextos laborales. 👉 
+    <a href="https://drive.google.com/open?id=19_eRtxWZ1DvwmY0pnxqImaBqKB7KbdRr" target="_blank">Ver PDF</a></p>
+  </details>
+
+  <details>
+    <summary>🦺 Política de Uso de EPP</summary>
+    <p>Establece la obligación del uso adecuado y permanente de los elementos de protección personal requeridos para cada actividad, garantizando la seguridad del trabajador. 👉 
+    <a href="https://drive.google.com/open?id=1vPF8VZr8pXxD4Wtzh0Gy9uEjBTR0RjB1" target="_blank">Ver PDF</a></p>
+  </details>
+
+  <details>
+    <summary>🤝 Política de Responsabilidad Social</summary>
+    <p>Promueve la generación de valor compartido con comunidades, el respeto por los derechos humanos y el cumplimiento de los principios éticos en la operación. 👉 
+    <a href="https://drive.google.com/open?id=1y8n1bGFYxf-Responsabilidad-Social" target="_blank">Ver PDF</a></p>
+  </details>
+
+  <p>📌 Conocer y aplicar estas políticas es parte de tu compromiso con la vida, el ambiente y la cultura de seguridad en PBI.</p>
+
+  <br />
+  <label style="display: flex; align-items: center; gap: 8px;">
+    <input type="checkbox" id="check-politicas" />
+    ✅ Confirmo que he leído y comprendido las políticas corporativas de PBI.
+  </label>
+</section>
 
 
 </div>
@@ -1037,6 +1077,10 @@ section ul li input[type="checkbox"] {
       actualizarBotonSiguienteReglamento();
       const checkReglamento = document.getElementById("checkReglamento");
       if (checkReglamento) checkReglamento.addEventListener("change", actualizarBotonSiguienteReglamento);
+    } else if (seccionActual.id === "verificacion-politicas") {
+      actualizarBotonSiguientePoliticas();
+      const checkPoliticas = document.getElementById("check-politicas");
+      if (checkPoliticas) checkPoliticas.addEventListener("change", actualizarBotonSiguientePoliticas);
     } else {
       btnSiguiente.disabled = false;
       btnSiguiente.style.cursor = "pointer";
@@ -1079,6 +1123,21 @@ section ul li input[type="checkbox"] {
       }
     }
 
+    if (seccionActual.id === "verificacion-politicas") {
+      const checkPoliticas = document.getElementById("check-politicas");
+      if (!checkPoliticas.checked) {
+        if (!document.getElementById("advertencia-check")) {
+          const advertencia = document.createElement("p");
+          advertencia.id = "advertencia-check";
+          advertencia.textContent = "⚠️ Debes confirmar que leíste las políticas antes de continuar.";
+          advertencia.style.color = "red";
+          advertencia.style.marginTop = "15px";
+          seccionActual.appendChild(advertencia);
+        }
+        return;
+      }
+    }
+
     if (current < sections.length - 1) {
       current++;
       show(current);
@@ -1113,10 +1172,20 @@ section ul li input[type="checkbox"] {
     btnSiguiente.style.opacity = checkReglamento.checked ? "1" : "0.6";
   }
 
+  function actualizarBotonSiguientePoliticas() {
+    const checkPoliticas = document.getElementById("check-politicas");
+    if (!checkPoliticas) return;
+
+    btnSiguiente.disabled = !checkPoliticas.checked;
+    btnSiguiente.style.cursor = checkPoliticas.checked ? "pointer" : "not-allowed";
+    btnSiguiente.style.opacity = checkPoliticas.checked ? "1" : "0.6";
+  }
+
   document.addEventListener("DOMContentLoaded", () => {
     show(current);
   });
 </script>
+
 
 </body>
 </html>
