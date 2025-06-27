@@ -973,6 +973,31 @@ section ul li input[type="checkbox"] {
     <strong>✅ Este sistema permite identificar riesgos, implementar controles efectivos y asegurar el bienestar de todos los trabajadores en cada nivel operativo.</strong>
   </div>
 </section>
+<section class="section" id="reglamento">
+  <div class="img-superior-derecha">
+    <img src="https://i.postimg.cc/CLSFNhyN/LOGO-PBI-CASCO-BLANCO.png" alt="Icono Reglamento">
+  </div>
+
+  <h2>📘 Reglamento de Higiene y Seguridad Industrial</h2>
+
+  <p style="text-align: center; max-width: 800px; margin: 0 auto;">
+    Este reglamento tiene como objetivo la <strong>identificación, reconocimiento, evaluación y control</strong> de los factores de riesgo que se originen en los lugares de trabajo y que puedan afectar la salud de los trabajadores.
+  </p>
+
+  <div style="text-align: center; margin: 20px 0;">
+    <a href="https://drive.google.com/file/d/1vPF8VZr8pXxD4Wtzh0Gy9uEjBTR0RjB1/view" target="_blank" style="background-color: #d2691e; color: white; padding: 12px 24px; border-radius: 8px; font-weight: bold; text-decoration: none;">
+      📥 Ingresa al siguiente link para conocer más
+    </a>
+  </div>
+
+  <div style="text-align: center; margin-top: 20px;">
+    <label style="font-size: 16px;">
+      <input type="checkbox" id="checkReglamento" />
+      ✅ Confirmo que he leído y comprendido el reglamento de higiene y seguridad industrial.
+    </label>
+  </div>
+</section>
+
 
 </div>
 
@@ -1002,9 +1027,16 @@ section ul li input[type="checkbox"] {
     const advertencia = document.getElementById("advertencia-check");
     if (advertencia) advertencia.remove();
 
-    // Verificar si estamos en la sección de verificación
-    if (sections[index].id === "verificacion-cap1") {
-      actualizarBotonSiguiente(); // activa o desactiva según los checkboxes
+    const seccionActual = sections[index];
+
+    if (seccionActual.id === "verificacion-cap1") {
+      actualizarBotonSiguienteVerificacion();
+      const checkboxes = seccionActual.querySelectorAll('input[type="checkbox"]');
+      checkboxes.forEach(cb => cb.addEventListener("change", actualizarBotonSiguienteVerificacion));
+    } else if (seccionActual.id === "reglamento") {
+      actualizarBotonSiguienteReglamento();
+      const checkReglamento = document.getElementById("checkReglamento");
+      if (checkReglamento) checkReglamento.addEventListener("change", actualizarBotonSiguienteReglamento);
     } else {
       btnSiguiente.disabled = false;
       btnSiguiente.style.cursor = "pointer";
@@ -1032,6 +1064,21 @@ section ul li input[type="checkbox"] {
       }
     }
 
+    if (seccionActual.id === "reglamento") {
+      const checkReglamento = document.getElementById("checkReglamento");
+      if (!checkReglamento.checked) {
+        if (!document.getElementById("advertencia-check")) {
+          const advertencia = document.createElement("p");
+          advertencia.id = "advertencia-check";
+          advertencia.textContent = "⚠️ Por favor confirma que leíste el reglamento antes de continuar.";
+          advertencia.style.color = "red";
+          advertencia.style.marginTop = "15px";
+          seccionActual.appendChild(advertencia);
+        }
+        return;
+      }
+    }
+
     if (current < sections.length - 1) {
       current++;
       show(current);
@@ -1045,7 +1092,7 @@ section ul li input[type="checkbox"] {
     }
   }
 
-  function actualizarBotonSiguiente() {
+  function actualizarBotonSiguienteVerificacion() {
     const seccionActual = sections[current];
     if (seccionActual.id !== "verificacion-cap1") return;
 
@@ -1057,11 +1104,17 @@ section ul li input[type="checkbox"] {
     btnSiguiente.style.opacity = todosMarcados ? "1" : "0.6";
   }
 
+  function actualizarBotonSiguienteReglamento() {
+    const checkReglamento = document.getElementById("checkReglamento");
+    if (!checkReglamento) return;
+
+    btnSiguiente.disabled = !checkReglamento.checked;
+    btnSiguiente.style.cursor = checkReglamento.checked ? "pointer" : "not-allowed";
+    btnSiguiente.style.opacity = checkReglamento.checked ? "1" : "0.6";
+  }
+
   document.addEventListener("DOMContentLoaded", () => {
     show(current);
-
-    const checkboxes = document.querySelectorAll('#verificacion-cap1 input[type="checkbox"]');
-    checkboxes.forEach(cb => cb.addEventListener("change", actualizarBotonSiguiente));
   });
 </script>
 
