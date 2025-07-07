@@ -1600,17 +1600,28 @@ section ul li input[type="checkbox"] {
   let current = 0;
   let sections = [];
 
-  function actualizarSecciones() {
-    const rol = document.getElementById("rolSeleccionado")?.value;
-    sections = Array.from(document.querySelectorAll("section")).filter(sec => {
-      const dataRol = sec.getAttribute("data-rol");
-      return !dataRol || dataRol === rol;
-    });
+ function actualizarSecciones() {
+  const rol = document.getElementById("rolSeleccionado")?.value;
+  const seccionVisible = sections[current]?.id || null;
 
-    sections.forEach(sec => sec.style.display = "none");
-    current = 0;
-    show(current);
+  sections = Array.from(document.querySelectorAll("section")).filter(sec => {
+    const dataRol = sec.getAttribute("data-rol");
+    return !dataRol || dataRol === rol;
+  });
+
+  sections.forEach(sec => sec.style.display = "none");
+
+  // Intentar mantener posición si existe
+  let nuevaPosicion = 0;
+  if (seccionVisible) {
+    const index = sections.findIndex(sec => sec.id === seccionVisible);
+    if (index !== -1) nuevaPosicion = index;
   }
+
+  current = nuevaPosicion;
+  show(current);
+}
+
 
   function filtrarContenidoPorRol() {
     const rol = document.getElementById("rolSeleccionado")?.value;
