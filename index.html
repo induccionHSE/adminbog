@@ -1521,54 +1521,42 @@ section ul li input[type="checkbox"] {
     </div>
   </div>
 </section>
-<section class="quiz-section">
-  <h2>🎯 Trivia HSEQ: Comportamiento y Seguridad Operativa</h2>
-  <p style="text-align:center;">Pon a prueba tus conocimientos sobre disciplina operativa, seguridad basada en el comportamiento y actos inseguros.</p>
+<section id="trivia-seguridad-comportamiento" class="quiz-section">
+  <h2>🧠 Trivia: Seguridad Basada en el Comportamiento y Tarjetas de Aporte</h2>
+  <p style="text-align: center;">Selecciona la respuesta correcta en cada caso:</p>
 
-  <form>
-    <label>
-      1️⃣ ¿Qué es un acto inseguro?
-      <br>
-      <input type="radio" name="pregunta1"> Es una condición peligrosa del entorno.<br>
-      <input type="radio" name="pregunta1"> Es un error del equipo.<br>
-      <input type="radio" name="pregunta1"> <strong>Es una acción que realiza una persona que puede poner en riesgo su seguridad o la de otros.</strong>
-    </label>
+  <form id="quizSeguridadComportamiento">
+    <div>
+      <p><strong>1. ¿Qué es un acto inseguro?</strong></p>
+      <label><input type="radio" name="p1" value="a" /> Una falla técnica del equipo</label><br />
+      <label><input type="radio" name="p1" value="b" /> Una condición externa no controlable</label><br />
+      <label><input type="radio" name="p1" value="c" /> Una acción realizada por una persona que genera riesgo</label>
+    </div>
 
-    <label>
-      2️⃣ ¿Cuál es el objetivo principal de las tarjetas de aporte?
-      <br>
-      <input type="radio" name="pregunta2"> Registrar vacaciones.<br>
-      <input type="radio" name="pregunta2"> <strong>Reportar condiciones o comportamientos que afectan la seguridad, el ambiente o la calidad.</strong><br>
-      <input type="radio" name="pregunta2"> Solicitar materiales.
-    </label>
+    <div style="margin-top:20px;">
+      <p><strong>2. ¿Cuál es el propósito de las tarjetas de aporte?</strong></p>
+      <label><input type="radio" name="p2" value="a" /> Solicitar vacaciones</label><br />
+      <label><input type="radio" name="p2" value="b" /> Reportar actos inseguros, ideas de mejora o incidentes</label><br />
+      <label><input type="radio" name="p2" value="c" /> Controlar la asistencia</label>
+    </div>
 
-    <label>
-      3️⃣ La disciplina operativa implica:
-      <br>
-      <input type="radio" name="pregunta3"> <strong>Hacer lo correcto siempre, conforme a estándares y procedimientos definidos.</strong><br>
-      <input type="radio" name="pregunta3"> Reaccionar ante emergencias.<br>
-      <input type="radio" name="pregunta3"> Solo seguir las órdenes verbales.
-    </label>
+    <div style="margin-top:20px;">
+      <p><strong>3. ¿Qué es la disciplina operativa?</strong></p>
+      <label><input type="radio" name="p3" value="a" /> Seguir procedimientos solo cuando hay supervisión</label><br />
+      <label><input type="radio" name="p3" value="b" /> Hacer lo correcto siempre, según estándares establecidos</label><br />
+      <label><input type="radio" name="p3" value="c" /> Cumplir órdenes verbales únicamente</label>
+    </div>
 
-    <label>
-      4️⃣ En la Seguridad Basada en el Comportamiento se promueve:
-      <br>
-      <input type="radio" name="pregunta4"> Castigar las fallas.<br>
-      <input type="radio" name="pregunta4"> <strong>Observar conductas, dar retroalimentación positiva y fortalecer hábitos seguros.</strong><br>
-      <input type="radio" name="pregunta4"> Cambiar equipos defectuosos.
-    </label>
+    <div style="margin-top:20px;">
+      <p><strong>4. ¿Cuál de las siguientes es una estrategia de la seguridad basada en el comportamiento?</strong></p>
+      <label><input type="radio" name="p4" value="a" /> Aplicar sanciones de inmediato</label><br />
+      <label><input type="radio" name="p4" value="b" /> Evitar retroalimentación para no generar incomodidad</label><br />
+      <label><input type="radio" name="p4" value="c" /> Observar, dar retroalimentación y reforzar conductas seguras</label>
+    </div>
 
-    <label>
-      5️⃣ ¿Qué debes hacer si observas una práctica insegura?
-      <br>
-      <input type="radio" name="pregunta5"> Ignorarla si no es tu tarea.<br>
-      <input type="radio" name="pregunta5"> <strong>Reportarla de inmediato a través de las tarjetas de aporte o directamente a HSEQ.</strong><br>
-      <input type="radio" name="pregunta5"> Esperar a que otro lo informe.
-    </label>
+    <div id="resultadoTriviaSeguridad" style="margin-top: 20px; font-weight: bold; text-align: center;"></div>
 
-    <button id="next-section-btn" type="button" onclick="alert('✅ Gracias por participar. ¡Recuerda que tu comportamiento hace la diferencia!')">
-      Enviar respuestas
-    </button>
+    <button type="button" onclick="validarTriviaSeguridad()" style="margin-top: 25px;">📊 Verificar respuestas</button>
   </form>
 </section>
 
@@ -1591,6 +1579,7 @@ section ul li input[type="checkbox"] {
     });
   });
 </script>
+
 <script>
   let current = 0;
   const sections = document.querySelectorAll("section");
@@ -1630,7 +1619,7 @@ section ul li input[type="checkbox"] {
       actualizarBotonSiguienteVial();
       const checkVial = document.getElementById("check-vial");
       if (checkVial) checkVial.addEventListener("change", actualizarBotonSiguienteVial);
-    } else if (seccionActual.id === "trivia-sgrl") {
+    } else if (seccionActual.id === "trivia-sgrl" || seccionActual.id === "trivia-seguridad-comportamiento") {
       btnSiguiente.disabled = true;
       btnSiguiente.style.cursor = "not-allowed";
       btnSiguiente.style.opacity = "0.6";
@@ -1647,7 +1636,6 @@ section ul li input[type="checkbox"] {
     if (seccionActual.id === "verificacion-cap1") {
       const checkboxes = seccionActual.querySelectorAll('input[type="checkbox"]');
       const todosMarcados = Array.from(checkboxes).every(cb => cb.checked);
-
       if (!todosMarcados) {
         mostrarAdvertencia("⚠️ Por favor marca todos los ítems antes de continuar.");
         return;
@@ -1680,6 +1668,14 @@ section ul li input[type="checkbox"] {
 
     if (seccionActual.id === "trivia-sgrl") {
       const resultado = document.getElementById("resultadoTrivia");
+      if (!resultado || resultado.textContent.includes("¡Muy bien!") === false) {
+        mostrarAdvertencia("⚠️ Resuelve correctamente la trivia antes de continuar.");
+        return;
+      }
+    }
+
+    if (seccionActual.id === "trivia-seguridad-comportamiento") {
+      const resultado = document.getElementById("resultadoTriviaSeguridad");
       if (!resultado || resultado.textContent.includes("¡Muy bien!") === false) {
         mostrarAdvertencia("⚠️ Resuelve correctamente la trivia antes de continuar.");
         return;
@@ -1782,10 +1778,45 @@ section ul li input[type="checkbox"] {
     }
   }
 
+  function validarTriviaSeguridad() {
+    const respuestasCorrectas = {
+      p1: "c",
+      p2: "b",
+      p3: "b",
+      p4: "c"
+    };
+
+    let correctas = 0;
+    for (const [key, correcta] of Object.entries(respuestasCorrectas)) {
+      const seleccionada = document.querySelector(`input[name="${key}"]:checked`);
+      if (seleccionada && seleccionada.value === correcta) {
+        correctas++;
+      }
+    }
+
+    const resultado = document.getElementById("resultadoTriviaSeguridad");
+    if (!resultado) return;
+
+    if (correctas === 4) {
+      resultado.innerHTML = "🎉 ¡Muy bien! Has respondido correctamente todas las preguntas.";
+      resultado.style.color = "green";
+      btnSiguiente.disabled = false;
+      btnSiguiente.style.cursor = "pointer";
+      btnSiguiente.style.opacity = "1";
+    } else {
+      resultado.innerHTML = "⚠️ Revisa tus respuestas. Debes acertar todas para continuar.";
+      resultado.style.color = "red";
+      btnSiguiente.disabled = true;
+      btnSiguiente.style.cursor = "not-allowed";
+      btnSiguiente.style.opacity = "0.6";
+    }
+  }
+
   document.addEventListener("DOMContentLoaded", () => {
     show(current);
   });
 </script>
+
 
 
 </body>
