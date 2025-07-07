@@ -1528,30 +1528,30 @@ section ul li input[type="checkbox"] {
   <form id="quizSeguridadComportamiento">
     <div>
       <p><strong>1. ¿Qué es un acto inseguro?</strong></p>
-      <label><input type="radio" name="p1" value="a" /> Una falla técnica del equipo</label><br />
-      <label><input type="radio" name="p1" value="b" /> Una condición externa no controlable</label><br />
-      <label><input type="radio" name="p1" value="c" /> Una acción realizada por una persona que genera riesgo</label>
+      <label><input type="radio" name="sc_p1" value="a" /> Una falla técnica del equipo</label><br />
+      <label><input type="radio" name="sc_p1" value="b" /> Una condición externa no controlable</label><br />
+      <label><input type="radio" name="sc_p1" value="c" /> Una acción realizada por una persona que genera riesgo</label>
     </div>
 
     <div style="margin-top:20px;">
       <p><strong>2. ¿Cuál es el propósito de las tarjetas de aporte?</strong></p>
-      <label><input type="radio" name="p2" value="a" /> Solicitar vacaciones</label><br />
-      <label><input type="radio" name="p2" value="b" /> Reportar actos inseguros, ideas de mejora o incidentes</label><br />
-      <label><input type="radio" name="p2" value="c" /> Controlar la asistencia</label>
+      <label><input type="radio" name="sc_p2" value="a" /> Solicitar vacaciones</label><br />
+      <label><input type="radio" name="sc_p2" value="b" /> Reportar actos inseguros, ideas de mejora o incidentes</label><br />
+      <label><input type="radio" name="sc_p2" value="c" /> Controlar la asistencia</label>
     </div>
 
     <div style="margin-top:20px;">
       <p><strong>3. ¿Qué es la disciplina operativa?</strong></p>
-      <label><input type="radio" name="p3" value="a" /> Seguir procedimientos solo cuando hay supervisión</label><br />
-      <label><input type="radio" name="p3" value="b" /> Hacer lo correcto siempre, según estándares establecidos</label><br />
-      <label><input type="radio" name="p3" value="c" /> Cumplir órdenes verbales únicamente</label>
+      <label><input type="radio" name="sc_p3" value="a" /> Seguir procedimientos solo cuando hay supervisión</label><br />
+      <label><input type="radio" name="sc_p3" value="b" /> Hacer lo correcto siempre, según estándares establecidos</label><br />
+      <label><input type="radio" name="sc_p3" value="c" /> Cumplir órdenes verbales únicamente</label>
     </div>
 
     <div style="margin-top:20px;">
       <p><strong>4. ¿Cuál de las siguientes es una estrategia de la seguridad basada en el comportamiento?</strong></p>
-      <label><input type="radio" name="p4" value="a" /> Aplicar sanciones de inmediato</label><br />
-      <label><input type="radio" name="p4" value="b" /> Evitar retroalimentación para no generar incomodidad</label><br />
-      <label><input type="radio" name="p4" value="c" /> Observar, dar retroalimentación y reforzar conductas seguras</label>
+      <label><input type="radio" name="sc_p4" value="a" /> Aplicar sanciones de inmediato</label><br />
+      <label><input type="radio" name="sc_p4" value="b" /> Evitar retroalimentación para no generar incomodidad</label><br />
+      <label><input type="radio" name="sc_p4" value="c" /> Observar, dar retroalimentación y reforzar conductas seguras</label>
     </div>
 
     <div id="resultadoTriviaSeguridad" style="margin-top: 20px; font-weight: bold; text-align: center;"></div>
@@ -1559,6 +1559,7 @@ section ul li input[type="checkbox"] {
     <button type="button" onclick="validarTriviaSeguridad()" style="margin-top: 25px;">📊 Verificar respuestas</button>
   </form>
 </section>
+
 <section id="seleccion-rol">
   <h2>🧑‍💼 Selecciona tu rol</h2>
   <p>Esto permitirá mostrarte el contenido específico para ti.</p>
@@ -1753,10 +1754,15 @@ section ul li input[type="checkbox"] {
   }
 
   function validarTriviaSeguridad() {
-    const respuestas = { p1: "c", p2: "b", p3: "b", p4: "c" };
-    let correctas = contarCorrectas(respuestas);
-    mostrarResultadoTrivia(correctas === 4, "resultadoTriviaSeguridad");
-  }
+  const respuestas = {
+    sc_p1: "c",
+    sc_p2: "b",
+    sc_p3: "b",
+    sc_p4: "c"
+  };
+  let correctas = contarCorrectas(respuestas);
+  mostrarResultadoTrivia(correctas === 4, "resultadoTriviaSeguridad");
+}
 
   function contarCorrectas(respuestas) {
     let aciertos = 0;
