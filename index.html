@@ -1559,6 +1559,34 @@ section ul li input[type="checkbox"] {
     <button type="button" onclick="validarTriviaSeguridad()" style="margin-top: 25px;">📊 Verificar respuestas</button>
   </form>
 </section>
+<section id="seleccion-rol">
+  <h2>🧑‍💼 Selecciona tu rol</h2>
+  <p>Esto permitirá mostrarte el contenido específico para ti.</p>
+  <select id="rolSeleccionado" onchange="filtrarContenidoPorRol()">
+    <option value="">-- Selecciona tu rol --</option>
+    <option value="administrativo">Administrativo</option>
+    <option value="operativo">Operativo</option>
+  </select>
+</section>
+<section class="solo-administrativo" data-rol="administrativo" style="display:none;">
+  <h2>🏢 Riesgos en oficina</h2>
+  <p>Incluye postura prolongada, fatiga visual, y manejo de dispositivos eléctricos.</p>
+</section>
+
+<section class="solo-administrativo" data-rol="administrativo" style="display:none;">
+  <h2>🆘 Emergencias en espacios cerrados</h2>
+  <p>Evacuación, primeros auxilios y uso de extintores.</p>
+</section>
+
+<section class="solo-operativo" data-rol="operativo" style="display:none;">
+  <h2>🔧 Riesgos en campo</h2>
+  <p>Trabajo en alturas, espacios confinados, izaje de cargas, etc.</p>
+</section>
+
+<section class="solo-operativo" data-rol="operativo" style="display:none;">
+  <h2>🚨 Emergencias operativas</h2>
+  <p>Plan de respuesta ante fugas, incendios, caídas o fallas de equipos.</p>
+</section>
 
   
 </div>
@@ -1568,118 +1596,95 @@ section ul li input[type="checkbox"] {
   <button id="btnSiguiente" onclick="nextSection()">Siguiente ➡️</button>
 </div>
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const acordeones = document.querySelectorAll(".acordeon");
-    acordeones.forEach(btn => {
-      btn.addEventListener("click", function () {
-        this.classList.toggle("activo");
-        const panel = this.nextElementSibling;
-        panel.style.display = (panel.style.display === "block") ? "none" : "block";
-      });
-    });
-  });
-</script>
-
-<script>
   let current = 0;
-  const sections = document.querySelectorAll("section");
-  const btnAnterior = document.getElementById("btnAnterior");
-  const btnSiguiente = document.getElementById("btnSiguiente");
+  let sections = [];
+
+  function actualizarSecciones() {
+    const rol = document.getElementById("rolSeleccionado")?.value;
+    sections = Array.from(document.querySelectorAll("section")).filter(sec => {
+      const dataRol = sec.getAttribute("data-rol");
+      return !dataRol || dataRol === rol;
+    });
+
+    sections.forEach(sec => sec.style.display = "none");
+    current = 0;
+    show(current);
+  }
+
+  function filtrarContenidoPorRol() {
+    const rol = document.getElementById("rolSeleccionado")?.value;
+    document.querySelectorAll('[data-rol]').forEach(sec => sec.style.display = "none");
+    document.querySelectorAll(`[data-rol="${rol}"]`).forEach(sec => sec.style.display = "block");
+    actualizarSecciones();
+  }
 
   function show(index) {
     sections.forEach((s, i) => {
+      s.style.display = i === index ? "block" : "none";
       s.classList.toggle("active", i === index);
     });
+
+    const btnAnterior = document.getElementById("btnAnterior");
+    const btnSiguiente = document.getElementById("btnSiguiente");
 
     btnAnterior.style.display = (index === 0) ? "none" : "inline-block";
     btnSiguiente.style.display = (index === sections.length - 1) ? "none" : "inline-block";
 
-    const progreso = ((index + 1) / sections.length) * 100;
     const barra = document.getElementById("barraProgreso");
-    if (barra) barra.style.width = progreso + "%";
+    if (barra) barra.style.width = ((index + 1) / sections.length) * 100 + "%";
 
     const advertencia = document.getElementById("advertencia-check");
     if (advertencia) advertencia.remove();
 
     const seccionActual = sections[index];
+    const id = seccionActual.id;
 
-    if (seccionActual.id === "verificacion-cap1") {
+    if (id === "verificacion-cap1") {
       actualizarBotonSiguienteVerificacion();
-      const checkboxes = seccionActual.querySelectorAll('input[type="checkbox"]');
-      checkboxes.forEach(cb => cb.addEventListener("change", actualizarBotonSiguienteVerificacion));
-    } else if (seccionActual.id === "reglamento") {
+      seccionActual.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.addEventListener("change", actualizarBotonSiguienteVerificacion));
+    } else if (id === "reglamento") {
       actualizarBotonSiguienteReglamento();
-      const checkReglamento = document.getElementById("checkReglamento");
-      if (checkReglamento) checkReglamento.addEventListener("change", actualizarBotonSiguienteReglamento);
-    } else if (seccionActual.id === "verificacion-politicas") {
+      document.getElementById("checkReglamento")?.addEventListener("change", actualizarBotonSiguienteReglamento);
+    } else if (id === "verificacion-politicas") {
       actualizarBotonSiguientePoliticas();
-      const checkPoliticas = document.getElementById("check-politicas");
-      if (checkPoliticas) checkPoliticas.addEventListener("change", actualizarBotonSiguientePoliticas);
-    } else if (seccionActual.id === "verificacion-vial") {
+      document.getElementById("check-politicas")?.addEventListener("change", actualizarBotonSiguientePoliticas);
+    } else if (id === "verificacion-vial") {
       actualizarBotonSiguienteVial();
-      const checkVial = document.getElementById("check-vial");
-      if (checkVial) checkVial.addEventListener("change", actualizarBotonSiguienteVial);
-    } else if (seccionActual.id === "trivia-sgrl" || seccionActual.id === "trivia-seguridad-comportamiento") {
-      btnSiguiente.disabled = true;
-      btnSiguiente.style.cursor = "not-allowed";
-      btnSiguiente.style.opacity = "0.6";
+      document.getElementById("check-vial")?.addEventListener("change", actualizarBotonSiguienteVial);
+    } else if (id === "trivia-sgrl" || id === "trivia-seguridad-comportamiento") {
+      desactivarBotonSiguiente();
     } else {
-      btnSiguiente.disabled = false;
-      btnSiguiente.style.cursor = "pointer";
-      btnSiguiente.style.opacity = "1";
+      activarBotonSiguiente();
     }
   }
 
   function nextSection() {
     const seccionActual = sections[current];
+    const id = seccionActual.id;
 
-    if (seccionActual.id === "verificacion-cap1") {
-      const checkboxes = seccionActual.querySelectorAll('input[type="checkbox"]');
-      const todosMarcados = Array.from(checkboxes).every(cb => cb.checked);
-      if (!todosMarcados) {
-        mostrarAdvertencia("⚠️ Por favor marca todos los ítems antes de continuar.");
-        return;
-      }
+    if (id === "verificacion-cap1" && !todosMarcados(seccionActual)) {
+      mostrarAdvertencia("⚠️ Por favor marca todos los ítems antes de continuar.");
+      return;
     }
-
-    if (seccionActual.id === "reglamento") {
-      const checkReglamento = document.getElementById("checkReglamento");
-      if (!checkReglamento.checked) {
-        mostrarAdvertencia("⚠️ Por favor confirma que leíste el reglamento antes de continuar.");
-        return;
-      }
+    if (id === "reglamento" && !document.getElementById("checkReglamento")?.checked) {
+      mostrarAdvertencia("⚠️ Por favor confirma que leíste el reglamento.");
+      return;
     }
-
-    if (seccionActual.id === "verificacion-politicas") {
-      const checkPoliticas = document.getElementById("check-politicas");
-      if (!checkPoliticas.checked) {
-        mostrarAdvertencia("⚠️ Debes confirmar que leíste las políticas antes de continuar.");
-        return;
-      }
+    if (id === "verificacion-politicas" && !document.getElementById("check-politicas")?.checked) {
+      mostrarAdvertencia("⚠️ Debes confirmar que leíste las políticas.");
+      return;
     }
-
-    if (seccionActual.id === "verificacion-vial") {
-      const checkVial = document.getElementById("check-vial");
-      if (!checkVial.checked) {
-        mostrarAdvertencia("⚠️ Debes confirmar que leíste las políticas de seguridad vial antes de continuar.");
-        return;
-      }
+    if (id === "verificacion-vial" && !document.getElementById("check-vial")?.checked) {
+      mostrarAdvertencia("⚠️ Debes confirmar que leíste las políticas de seguridad vial.");
+      return;
     }
-
-    if (seccionActual.id === "trivia-sgrl") {
-      const resultado = document.getElementById("resultadoTrivia");
-      if (!resultado || resultado.textContent.includes("¡Muy bien!") === false) {
-        mostrarAdvertencia("⚠️ Resuelve correctamente la trivia antes de continuar.");
-        return;
-      }
+    if (id === "trivia-sgrl" && !document.getElementById("resultadoTrivia")?.textContent.includes("¡Muy bien!")) {
+      mostrarAdvertencia("⚠️ Resuelve correctamente la trivia antes de continuar.");
+      return;
     }
-
-    if (seccionActual.id === "trivia-seguridad-comportamiento") {
-      const resultado = document.getElementById("resultadoTriviaSeguridad");
-      if (!resultado || resultado.textContent.includes("¡Muy bien!") === false) {
-        mostrarAdvertencia("⚠️ Resuelve correctamente la trivia antes de continuar.");
-        return;
-      }
+    if (id === "trivia-seguridad-comportamiento" && !document.getElementById("resultadoTriviaSeguridad")?.textContent.includes("¡Muy bien!")) {
+      mostrarAdvertencia("⚠️ Resuelve correctamente la trivia antes de continuar.");
+      return;
     }
 
     if (current < sections.length - 1) {
@@ -1706,116 +1711,90 @@ section ul li input[type="checkbox"] {
     }
   }
 
+  function todosMarcados(seccion) {
+    const checks = seccion.querySelectorAll('input[type="checkbox"]');
+    return Array.from(checks).every(cb => cb.checked);
+  }
+
+  function activarBotonSiguiente() {
+    const btn = document.getElementById("btnSiguiente");
+    btn.disabled = false;
+    btn.style.cursor = "pointer";
+    btn.style.opacity = "1";
+  }
+
+  function desactivarBotonSiguiente() {
+    const btn = document.getElementById("btnSiguiente");
+    btn.disabled = true;
+    btn.style.cursor = "not-allowed";
+    btn.style.opacity = "0.6";
+  }
+
   function actualizarBotonSiguienteVerificacion() {
-    const seccionActual = sections[current];
-    if (seccionActual.id !== "verificacion-cap1") return;
-
-    const checkboxes = seccionActual.querySelectorAll('input[type="checkbox"]');
-    const todosMarcados = Array.from(checkboxes).every(cb => cb.checked);
-
-    btnSiguiente.disabled = !todosMarcados;
-    btnSiguiente.style.cursor = todosMarcados ? "pointer" : "not-allowed";
-    btnSiguiente.style.opacity = todosMarcados ? "1" : "0.6";
+    todosMarcados(sections[current]) ? activarBotonSiguiente() : desactivarBotonSiguiente();
   }
 
   function actualizarBotonSiguienteReglamento() {
-    const checkReglamento = document.getElementById("checkReglamento");
-    if (!checkReglamento) return;
-
-    btnSiguiente.disabled = !checkReglamento.checked;
-    btnSiguiente.style.cursor = checkReglamento.checked ? "pointer" : "not-allowed";
-    btnSiguiente.style.opacity = checkReglamento.checked ? "1" : "0.6";
+    document.getElementById("checkReglamento")?.checked ? activarBotonSiguiente() : desactivarBotonSiguiente();
   }
 
   function actualizarBotonSiguientePoliticas() {
-    const checkPoliticas = document.getElementById("check-politicas");
-    if (!checkPoliticas) return;
-
-    btnSiguiente.disabled = !checkPoliticas.checked;
-    btnSiguiente.style.cursor = checkPoliticas.checked ? "pointer" : "not-allowed";
-    btnSiguiente.style.opacity = checkPoliticas.checked ? "1" : "0.6";
+    document.getElementById("check-politicas")?.checked ? activarBotonSiguiente() : desactivarBotonSiguiente();
   }
 
   function actualizarBotonSiguienteVial() {
-    const checkVial = document.getElementById("check-vial");
-    if (!checkVial) return;
-
-    btnSiguiente.disabled = !checkVial.checked;
-    btnSiguiente.style.cursor = checkVial.checked ? "pointer" : "not-allowed";
-    btnSiguiente.style.opacity = checkVial.checked ? "1" : "0.6";
+    document.getElementById("check-vial")?.checked ? activarBotonSiguiente() : desactivarBotonSiguiente();
   }
 
   function validarTrivia() {
-    const respuestasCorrectas = {
-      p1: "c",
-      p2: "b",
-      p3: "c"
-    };
-
-    let correctas = 0;
-    for (const [key, correcta] of Object.entries(respuestasCorrectas)) {
-      const seleccionada = document.querySelector(`input[name="${key}"]:checked`);
-      if (seleccionada && seleccionada.value === correcta) {
-        correctas++;
-      }
-    }
-
-    const resultado = document.getElementById("resultadoTrivia");
-    if (!resultado) return;
-
-    if (correctas === 3) {
-      resultado.innerHTML = "🎉 ¡Muy bien! Has respondido correctamente todas las preguntas.";
-      resultado.style.color = "green";
-      btnSiguiente.disabled = false;
-      btnSiguiente.style.cursor = "pointer";
-      btnSiguiente.style.opacity = "1";
-    } else {
-      resultado.innerHTML = "⚠️ Revisa tus respuestas. Debes acertar todas para continuar.";
-      resultado.style.color = "red";
-      btnSiguiente.disabled = true;
-      btnSiguiente.style.cursor = "not-allowed";
-      btnSiguiente.style.opacity = "0.6";
-    }
+    const respuestas = { p1: "c", p2: "b", p3: "c" };
+    let correctas = contarCorrectas(respuestas);
+    mostrarResultadoTrivia(correctas === 3, "resultadoTrivia");
   }
 
   function validarTriviaSeguridad() {
-    const respuestasCorrectas = {
-      p1: "c",
-      p2: "b",
-      p3: "b",
-      p4: "c"
-    };
+    const respuestas = { p1: "c", p2: "b", p3: "b", p4: "c" };
+    let correctas = contarCorrectas(respuestas);
+    mostrarResultadoTrivia(correctas === 4, "resultadoTriviaSeguridad");
+  }
 
-    let correctas = 0;
-    for (const [key, correcta] of Object.entries(respuestasCorrectas)) {
-      const seleccionada = document.querySelector(`input[name="${key}"]:checked`);
-      if (seleccionada && seleccionada.value === correcta) {
-        correctas++;
-      }
+  function contarCorrectas(respuestas) {
+    let aciertos = 0;
+    for (const [p, val] of Object.entries(respuestas)) {
+      const r = document.querySelector(`input[name="${p}"]:checked`);
+      if (r?.value === val) aciertos++;
     }
+    return aciertos;
+  }
 
-    const resultado = document.getElementById("resultadoTriviaSeguridad");
+  function mostrarResultadoTrivia(esCorrecto, idResultado) {
+    const resultado = document.getElementById(idResultado);
     if (!resultado) return;
-
-    if (correctas === 4) {
+    if (esCorrecto) {
       resultado.innerHTML = "🎉 ¡Muy bien! Has respondido correctamente todas las preguntas.";
       resultado.style.color = "green";
-      btnSiguiente.disabled = false;
-      btnSiguiente.style.cursor = "pointer";
-      btnSiguiente.style.opacity = "1";
+      activarBotonSiguiente();
     } else {
       resultado.innerHTML = "⚠️ Revisa tus respuestas. Debes acertar todas para continuar.";
       resultado.style.color = "red";
-      btnSiguiente.disabled = true;
-      btnSiguiente.style.cursor = "not-allowed";
-      btnSiguiente.style.opacity = "0.6";
+      desactivarBotonSiguiente();
     }
   }
 
   document.addEventListener("DOMContentLoaded", () => {
-    show(current);
+    actualizarSecciones();
+
+    // Activar acordeones
+    document.querySelectorAll(".acordeon").forEach(btn => {
+      btn.addEventListener("click", function () {
+        this.classList.toggle("activo");
+        const panel = this.nextElementSibling;
+        panel.style.display = panel.style.display === "block" ? "none" : "block";
+      });
+    });
   });
 </script>
+
 
 
 
