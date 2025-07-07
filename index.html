@@ -1561,14 +1561,22 @@ section ul li input[type="checkbox"] {
 </section>
 
 <section id="seleccion-rol">
-  <h2>🧑‍💼 Selecciona tu rol</h2>
-  <p>Esto permitirá mostrarte el contenido específico para ti.</p>
-  <select id="rolSeleccionado" onchange="filtrarContenidoPorRol()">
-    <option value="">-- Selecciona tu rol --</option>
-    <option value="administrativo">Administrativo</option>
-    <option value="operativo">Operativo</option>
-  </select>
+  <h2>👥 ¿Cuál es tu rol dentro de la organización?</h2>
+  <p style="text-align: center; font-size: 1.1em;">
+    A partir de este punto, exploraremos contenidos diseñados especialmente según tu rol.  
+    Ya conoces lo esencial de nuestro Sistema Integrado de Gestión; ahora profundizaremos en los aspectos que aplican directamente a tus funciones.  
+    <strong>Selecciona tu rol para continuar con una experiencia personalizada.</strong>
+  </p>
+
+  <div style="text-align: center; margin-top: 20px;">
+    <select id="rolSeleccionado" onchange="filtrarContenidoPorRol()" style="padding: 10px; font-size: 1em;">
+      <option value="">-- Selecciona tu rol --</option>
+      <option value="administrativo">👨‍💼 Personal Administrativo</option>
+      <option value="operativo">👷 Personal Operativo</option>
+    </select>
+  </div>
 </section>
+
 <section class="solo-administrativo" data-rol="administrativo" style="display:none;">
   <h2>🏢 Riesgos en oficina</h2>
   <p>Incluye postura prolongada, fatiga visual, y manejo de dispositivos eléctricos.</p>
@@ -1600,33 +1608,38 @@ section ul li input[type="checkbox"] {
   let current = 0;
   let sections = [];
 
- function actualizarSecciones() {
-  const rol = document.getElementById("rolSeleccionado")?.value;
-  const seccionVisible = sections[current]?.id || null;
+  function actualizarSecciones() {
+    const rol = document.getElementById("rolSeleccionado")?.value;
+    const seccionActualId = sections[current]?.id || null;
 
-  sections = Array.from(document.querySelectorAll("section")).filter(sec => {
-    const dataRol = sec.getAttribute("data-rol");
-    return !dataRol || dataRol === rol;
-  });
+    // Filtra las secciones visibles (sin data-rol o con data-rol == seleccionado)
+    sections = Array.from(document.querySelectorAll("section")).filter(sec => {
+      const dataRol = sec.getAttribute("data-rol");
+      return !dataRol || dataRol === rol;
+    });
 
-  sections.forEach(sec => sec.style.display = "none");
+    sections.forEach(sec => sec.style.display = "none");
 
-  // Intentar mantener posición si existe
-  let nuevaPosicion = 0;
-  if (seccionVisible) {
-    const index = sections.findIndex(sec => sec.id === seccionVisible);
-    if (index !== -1) nuevaPosicion = index;
+    // Si ya estábamos en una sección válida, mantenla
+    let nuevaPosicion = 0;
+    if (seccionActualId) {
+      const idx = sections.findIndex(sec => sec.id === seccionActualId);
+      if (idx !== -1) nuevaPosicion = idx;
+    }
+
+    current = nuevaPosicion;
+    show(current);
   }
-
-  current = nuevaPosicion;
-  show(current);
-}
-
 
   function filtrarContenidoPorRol() {
     const rol = document.getElementById("rolSeleccionado")?.value;
+
+    // Oculta todas las secciones específicas
     document.querySelectorAll('[data-rol]').forEach(sec => sec.style.display = "none");
+
+    // Muestra las del rol elegido
     document.querySelectorAll(`[data-rol="${rol}"]`).forEach(sec => sec.style.display = "block");
+
     actualizarSecciones();
   }
 
@@ -1765,15 +1778,10 @@ section ul li input[type="checkbox"] {
   }
 
   function validarTriviaSeguridad() {
-  const respuestas = {
-    sc_p1: "c",
-    sc_p2: "b",
-    sc_p3: "b",
-    sc_p4: "c"
-  };
-  let correctas = contarCorrectas(respuestas);
-  mostrarResultadoTrivia(correctas === 4, "resultadoTriviaSeguridad");
-}
+    const respuestas = { sc_p1: "c", sc_p2: "b", sc_p3: "b", sc_p4: "c" };
+    let correctas = contarCorrectas(respuestas);
+    mostrarResultadoTrivia(correctas === 4, "resultadoTriviaSeguridad");
+  }
 
   function contarCorrectas(respuestas) {
     let aciertos = 0;
@@ -1801,7 +1809,6 @@ section ul li input[type="checkbox"] {
   document.addEventListener("DOMContentLoaded", () => {
     actualizarSecciones();
 
-    // Activar acordeones
     document.querySelectorAll(".acordeon").forEach(btn => {
       btn.addEventListener("click", function () {
         this.classList.toggle("activo");
