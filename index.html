@@ -399,6 +399,82 @@ section ul li input[type="checkbox"] {
   margin-left: auto;
   margin-right: auto;
 }
+    .card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+  margin-bottom: 40px;
+}
+.card {
+  background-color: #ffffff;
+  border-left: 5px solid #007BFF;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-5px);
+}
+.card h3 {
+  margin-top: 0;
+  color: #003366;
+}
+.card p {
+  color: #333;
+  font-size: 0.95em;
+}
+.card .ley {
+  font-size: 0.85em;
+  color: #666;
+  margin-top: 8px;
+}
+.imagen-seccion img {
+  max-width: 100%;
+  height: auto;
+  max-height: 350px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  object-fit: contain;
+  margin: 0 auto 20px;
+  display: block;
+}
+.acordeon-contenedor {
+  margin: 40px 0;
+}
+.acordeon {
+  background-color: #004d73;
+  color: white;
+  cursor: pointer;
+  padding: 16px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+.acordeon:hover {
+  background-color: #006599;
+}
+.panel {
+  padding: 0 20px 15px;
+  background-color: #eef5f9;
+  overflow: hidden;
+  display: none;
+  border-left: 5px solid #006599;
+  border-radius: 6px;
+  margin-top: 5px;
+  font-size: 0.95em;
+}
+@media screen and (max-width: 768px) {
+  .card-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
   </style>
 </head>
 <body>
@@ -1190,13 +1266,13 @@ section ul li input[type="checkbox"] {
       <p><strong>1. ¿Quién debe notificar a la ARL sobre un accidente laboral?</strong></p>
       <label><input type="radio" name="p1" value="a" /> El trabajador afectado</label><br />
       <label><input type="radio" name="p1" value="b" /> El jefe inmediato del trabajador</label><br />
-      <label><input type="radio" name="p1" value="c" /> ✅ El empleador</label>
+      <label><input type="radio" name="p1" value="c" /> El empleador</label>
     </div>
 
     <div style="margin-top:20px;">
       <p><strong>2. ¿Cuál es uno de los derechos de los trabajadores en el SGRL?</strong></p>
       <label><input type="radio" name="p2" value="a" /> Sancionar al empleador</label><br />
-      <label><input type="radio" name="p2" value="b" /> ✅ Acceder a atención médica en caso de accidente laboral</label><br />
+      <label><input type="radio" name="p2" value="b" /> Acceder a atención médica en caso de accidente laboral</label><br />
       <label><input type="radio" name="p2" value="c" /> Delegar el uso de EPP en otro compañero</label>
     </div>
 
@@ -1204,7 +1280,7 @@ section ul li input[type="checkbox"] {
       <p><strong>3. ¿Qué deber tiene el trabajador según el Decreto 1072?</strong></p>
       <label><input type="radio" name="p3" value="a" /> Exigir aumento de sueldo por riesgo</label><br />
       <label><input type="radio" name="p3" value="b" /> Ignorar las normas si ya tiene experiencia</label><br />
-      <label><input type="radio" name="p3" value="c" /> ✅ Informar peligros y riesgos a su empleador</label>
+      <label><input type="radio" name="p3" value="c" /> Informar peligros y riesgos a su empleador</label>
     </div>
 
     <div id="resultadoTrivia" style="margin-top: 20px; font-weight: bold; text-align: center;"></div>
