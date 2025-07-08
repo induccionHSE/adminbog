@@ -3130,12 +3130,14 @@ section ul li input[type="checkbox"] {
     } else if (id === "verificacion-vial") {
       actualizarBotonSiguienteVial();
       document.getElementById("check-vial")?.addEventListener("change", actualizarBotonSiguienteVial);
-    } else if (id === "quiz-capitulo3") {
-      if (quizCapitulo3Aprobado) {
-        activarBotonSiguiente();
-      } else {
-        desactivarBotonSiguiente();
-      }
+ else if (id === "quiz-capitulo3") {
+  const resultado = document.getElementById("resultadoQuizCap3");
+  if (resultado?.textContent.includes("¡Muy bien!")) {
+    activarBotonSiguiente();
+  } else {
+    desactivarBotonSiguiente();
+  }
+}
     } else if (id === "trivia-sgrl" || id === "trivia-seguridad-comportamiento" || id === "quiz-capitulo2") {
       desactivarBotonSiguiente();
     } else {
