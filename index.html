@@ -2529,17 +2529,20 @@ section ul li input[type="checkbox"] {
     }
   }
 
-  document.addEventListener("DOMContentLoaded", () => {
-    actualizarSecciones();
+document.addEventListener("DOMContentLoaded", () => {
+  actualizarSecciones();
 
-    document.querySelectorAll(".acordeon").forEach(btn => {
-      btn.addEventListener("click", function () {
-        this.classList.toggle("activo");
-        const panel = this.nextElementSibling;
-        panel.style.display = panel.style.display === "block" ? "none" : "block";
-      });
+  document.getElementById("rolSeleccionado")?.addEventListener("change", filtrarContenidoPorRol);
+
+  document.querySelectorAll(".acordeon").forEach(btn => {
+    btn.addEventListener("click", function () {
+      this.classList.toggle("activo");
+      const panel = this.nextElementSibling;
+      panel.style.display = panel.style.display === "block" ? "none" : "block";
     });
   });
+});
+
 </script>
 
 
