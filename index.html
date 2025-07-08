@@ -1397,7 +1397,7 @@ section ul li input[type="checkbox"] {
 
     <div id="resultadoTrivia" style="margin: 20px 0; font-weight: bold; text-align: center;"></div>
 
-    <button type="button" onclick="validarTrivia()">📊 Verificar respuestas</button>
+    <button type="button" onclick="validarTrivia()">📊 Enviar respuestas</button>
   </form>
 </section>
 
@@ -1440,7 +1440,7 @@ section ul li input[type="checkbox"] {
         <li>⚽ En actividades recreativas o culturales por encargo del empleador.</li>
       </ul>
       <div style="text-align:center; margin-top: 10px;">
-        <img src="https://i.postimg.cc/Y0x5XPt7/piramide-accidentes.png" alt="Pirámide accidentes" style="max-width: 250px;">
+        <img src="https://i.postimg.cc/RVx0kJ9x/at.png" alt="Pirámide accidentes" style="max-width: 250px;">
       </div>
     </div>
 
@@ -1635,54 +1635,57 @@ section ul li input[type="checkbox"] {
   </div>
 </section>
 <section id="trivia-seguridad-comportamiento" class="quiz-section">
-  <h2>🧠 Trivia: Seguridad Basada en el Comportamiento y Tarjetas de Aporte</h2>
-  <p style="text-align: center;">Selecciona la respuesta correcta en cada caso:</p>
+  <h2 style="margin-bottom: 10px;">🧠 Trivia: Seguridad Basada en el Comportamiento y Tarjetas de Aporte</h2>
+  <p style="text-align: center; margin: 0 0 20px 0;">Selecciona la respuesta correcta en cada caso:</p>
 
   <form id="quizSeguridadComportamiento">
-    <div>
-      <p><strong>1. ¿Qué es un acto inseguro?</strong></p>
-      <label><input type="radio" name="sc_p1" value="a" /> Una falla técnica del equipo</label><br />
-      <label><input type="radio" name="sc_p1" value="b" /> Una condición externa no controlable</label><br />
+    <div style="margin-bottom: 15px;">
+      <p style="margin: 0 0 5px 0;"><strong>1. ¿Qué es un acto inseguro?</strong></p>
+      <label><input type="radio" name="sc_p1" value="a" /> Una falla técnica del equipo</label>
+      <label><input type="radio" name="sc_p1" value="b" /> Una condición externa no controlable</label>
       <label><input type="radio" name="sc_p1" value="c" /> Una acción realizada por una persona que genera riesgo</label>
     </div>
 
-    <div style="margin-top:20px;">
-      <p><strong>2. ¿Cuál es el propósito de las tarjetas de aporte?</strong></p>
-      <label><input type="radio" name="sc_p2" value="a" /> Solicitar vacaciones</label><br />
-      <label><input type="radio" name="sc_p2" value="b" /> Reportar actos inseguros, ideas de mejora o incidentes</label><br />
+    <div style="margin-bottom: 15px;">
+      <p style="margin: 0 0 5px 0;"><strong>2. ¿Cuál es el propósito de las tarjetas de aporte?</strong></p>
+      <label><input type="radio" name="sc_p2" value="a" /> Solicitar vacaciones</label>
+      <label><input type="radio" name="sc_p2" value="b" /> Reportar actos inseguros, ideas de mejora o incidentes</label>
       <label><input type="radio" name="sc_p2" value="c" /> Controlar la asistencia</label>
     </div>
 
-    <div style="margin-top:20px;">
-      <p><strong>3. ¿Qué es la disciplina operativa?</strong></p>
-      <label><input type="radio" name="sc_p3" value="a" /> Seguir procedimientos solo cuando hay supervisión</label><br />
-      <label><input type="radio" name="sc_p3" value="b" /> Hacer lo correcto siempre, según estándares establecidos</label><br />
+    <div style="margin-bottom: 15px;">
+      <p style="margin: 0 0 5px 0;"><strong>3. ¿Qué es la disciplina operativa?</strong></p>
+      <label><input type="radio" name="sc_p3" value="a" /> Seguir procedimientos solo cuando hay supervisión</label>
+      <label><input type="radio" name="sc_p3" value="b" /> Hacer lo correcto siempre, según estándares establecidos</label>
       <label><input type="radio" name="sc_p3" value="c" /> Cumplir órdenes verbales únicamente</label>
     </div>
 
-    <div style="margin-top:20px;">
-      <p><strong>4. ¿Cuál de las siguientes es una estrategia de la seguridad basada en el comportamiento?</strong></p>
-      <label><input type="radio" name="sc_p4" value="a" /> Aplicar sanciones de inmediato</label><br />
-      <label><input type="radio" name="sc_p4" value="b" /> Evitar retroalimentación para no generar incomodidad</label><br />
+    <div style="margin-bottom: 20px;">
+      <p style="margin: 0 0 5px 0;"><strong>4. ¿Cuál de las siguientes es una estrategia de la seguridad basada en el comportamiento?</strong></p>
+      <label><input type="radio" name="sc_p4" value="a" /> Aplicar sanciones de inmediato</label>
+      <label><input type="radio" name="sc_p4" value="b" /> Evitar retroalimentación para no generar incomodidad</label>
       <label><input type="radio" name="sc_p4" value="c" /> Observar, dar retroalimentación y reforzar conductas seguras</label>
     </div>
 
-    <div id="resultadoTriviaSeguridad" style="margin-top: 20px; font-weight: bold; text-align: center;"></div>
+    <div id="resultadoTriviaSeguridad" style="margin: 20px 0; font-weight: bold; text-align: center;"></div>
 
-    <button type="button" onclick="validarTriviaSeguridad()" style="margin-top: 25px;">📊 Verificar respuestas</button>
+    <button type="button" onclick="validarTriviaSeguridad()">📊 Enviar respuestas</button>
   </form>
 </section>
 
-<section id="seleccion-rol">
+<section id="seleccion-rol" style="text-align: center; max-width: 900px; margin: 40px auto;">
   <h2>👥 ¿Cuál es tu rol dentro de la organización?</h2>
-  <p style="text-align: center; font-size: 1.1em;">
-    A partir de este punto, exploraremos contenidos diseñados especialmente según tu rol.  
-    Ya conoces lo esencial de nuestro Sistema Integrado de Gestión; ahora profundizaremos en los aspectos que aplican directamente a tus funciones.  
-    <strong>Selecciona tu rol para continuar con una experiencia personalizada.</strong>
+  <p style="font-size: 1.1em; line-height: 1.6; max-width: 750px; margin: 0 auto;">
+    A partir de este punto, accederás a contenidos diseñados especialmente según tu rol en <strong>Petroleum Blending International S.A.S E.S.P</strong>.
+    Ya conoces la base de nuestro <strong>Sistema Integrado de Gestión (SIG)</strong>, ahora es momento de explorar lo que aplica directamente a tus funciones diarias.
   </p>
 
-  <div style="text-align: center; margin-top: 20px;">
-    <select id="rolSeleccionado" onchange="filtrarContenidoPorRol()" style="padding: 10px; font-size: 1em;">
+  <div class="hseq-note" style="margin: 25px auto 15px; font-size: 1em;">
+    🎯 <strong>Selecciona tu rol para continuar con una experiencia de inducción personalizada.</strong>
+  </div>
+
+  <div style="margin-top: 15px;">
+    <select id="rolSeleccionado" onchange="filtrarContenidoPorRol()" style="padding: 12px 20px; font-size: 1em; border-radius: 6px; border: 1px solid #ccc; width: 280px;">
       <option value="">-- Selecciona tu rol --</option>
       <option value="administrativo">👨‍💼 Personal Administrativo</option>
       <option value="operativo">👷 Personal Operativo</option>
@@ -1691,7 +1694,7 @@ section ul li input[type="checkbox"] {
 </section>
 
 <section data-rol="administrativo">
-  <h2>4. PELIGROS Y RIESGOS EN OFICINA</h2>
+  <h2>1. PELIGROS Y RIESGOS EN OFICINA</h2>
   <p>Durante tus actividades en oficina puedes estar expuesto a diversos riesgos. A continuación, te mostramos los más representativos, con ejemplos y medidas preventivas:</p>
 
   <details>
@@ -1805,7 +1808,7 @@ section ul li input[type="checkbox"] {
 
 </section>
 <section data-rol="administrativo">
-  <h2>5. PELIGROS Y RIESGOS EN TRABAJO DESDE CASA</h2>
+  <h2>2. PELIGROS Y RIESGOS EN TRABAJO DESDE CASA</h2>
   <p>Cuando realizas tus actividades desde casa también estás expuesto a riesgos que pueden afectar tu bienestar. Aquí te mostramos los más comunes y cómo prevenirlos:</p>
 
   <details>
@@ -1865,7 +1868,7 @@ section ul li input[type="checkbox"] {
 </section>
   
   <section data-rol="administrativo">
-  <h2>5. NORMAS DE SEGURIDAD Y BIENESTAR EN OFICINA</h2>
+  <h2>3. NORMAS DE SEGURIDAD Y BIENESTAR EN OFICINA</h2>
   <p>El trabajo administrativo también implica cuidados esenciales para la salud y el bienestar. A continuación, te compartimos recomendaciones prácticas sobre higiene postural, salud mental, salud visual y más:</p>
 
   <details>
@@ -1931,7 +1934,7 @@ section ul li input[type="checkbox"] {
     <img src="https://i.postimg.cc/CLSFNhyN/LOGO-PBI-CASCO-BLANCO.png" alt="Personaje PBI con EPP">
   </div>
 
-  <h2>8. PLAN DE EMERGENCIAS EN OFICINAS ADMINISTRATIVAS</h2>
+  <h2>4. PLAN DE EMERGENCIAS EN OFICINAS ADMINISTRATIVAS</h2>
   <p>Todos los colaboradores deben conocer y seguir las instrucciones establecidas en el plan de emergencias del edificio. Actuar con calma y responsabilidad puede marcar la diferencia ante una situación crítica:</p>
 
   <div class="accordion">
@@ -1978,7 +1981,7 @@ section ul li input[type="checkbox"] {
     <img src="https://i.postimg.cc/CLSFNhyN/LOGO-PBI-CASCO-BLANCO.png" alt="Personaje PBI con EPP">
   </div>
 
-  <h2>9. MANEJO DE EXTINTORES EN ENTORNOS ADMINISTRATIVOS</h2>
+  <h2>5. MANEJO DE EXTINTORES EN ENTORNOS ADMINISTRATIVOS</h2>
 
   <p>En tu entorno de trabajo puede haber diferentes tipos de extintores. Conocer su uso correcto puede ayudarte a actuar ante una emergencia inicial (solo si es seguro hacerlo).</p>
   <p><strong>Importante:</strong> No intentes usar un extintor si no has sido capacitado o si existe riesgo personal. Notifica de inmediato a brigadistas o seguridad.</p>
@@ -2032,7 +2035,7 @@ section ul li input[type="checkbox"] {
     <img src="https://i.postimg.cc/CLSFNhyN/LOGO-PBI-CASCO-BLANCO.png" alt="Personaje PBI con EPP">
   </div>
 
-  <h2>10. SEGURIDAD VIAL Y DESPLAZAMIENTOS URBANOS</h2>
+  <h2>6. SEGURIDAD VIAL Y DESPLAZAMIENTOS URBANOS</h2>
   <p>Así trabajes en oficinas, todos nos desplazamos por vías públicas. Tu seguridad comienza antes de llegar al trabajo. Aplica estas recomendaciones al conducir, caminar o usar transporte público:</p>
 
   <div class="accordion">
@@ -2085,7 +2088,7 @@ section ul li input[type="checkbox"] {
 </section>
 
 <section data-rol="operativo">
-  <h2>4. PELIGROS Y RIESGOS EN CAMPO</h2>
+  <h2>1. PELIGROS Y RIESGOS EN CAMPO</h2>
   <p>Durante tus actividades como personal operativo, ya sea de planta o por contratación temporal, puedes estar expuesto a diversos peligros. A continuación, te presentamos los más representativos junto con medidas preventivas clave:</p>
 
   <details>
@@ -2226,7 +2229,7 @@ section ul li input[type="checkbox"] {
     <img src="https://i.postimg.cc/CLSFNhyN/LOGO-PBI-CASCO-BLANCO.png" alt="Personaje PBI con EPP">
   </div>
 
-  <h2>5. CONOCE NUESTRAS REGLAS DE ORO</h2>
+  <h2>2. CONOCE NUESTRAS REGLAS DE ORO</h2>
 
   <div style="font-family: 'Segoe UI', sans-serif; background-color: white; color: #002b45; font-size: 10.5px; padding: 0.5rem;">
     <div style="text-align: center; margin-bottom: 20px;">
@@ -2343,7 +2346,7 @@ section ul li input[type="checkbox"] {
     <img src="https://i.postimg.cc/CLSFNhyN/LOGO-PBI-CASCO-BLANCO.png" alt="Personaje PBI con EPP">
   </div>
 
-  <h2>6. PERMISOS DE TRABAJO Y ATS</h2>
+  <h2>3. PERMISOS DE TRABAJO Y ATS</h2>
 
   <p>📝 En PBI, todo trabajo que no sea rutinario o que involucre riesgos debe contar con autorización previa mediante un <strong>Permiso de Trabajo</strong> y un <strong>Análisis de Trabajo Seguro (ATS)</strong>. Esta exigencia aplica tanto para trabajadores directos como para personal en misión (temporal).</p>
 
@@ -2364,7 +2367,7 @@ section ul li input[type="checkbox"] {
     <img src="https://i.postimg.cc/CLSFNhyN/LOGO-PBI-CASCO-BLANCO.png" alt="Personaje PBI con EPP">
   </div>
 
-  <h2>7. TAREAS DE ALTO RIESGO</h2>
+  <h2>4. TAREAS DE ALTO RIESGO</h2>
 
   <p>⚠️ Las siguientes actividades son consideradas <strong>tareas de alto riesgo</strong> por su potencial de generar incidentes graves o fatales si no se gestionan adecuadamente. Todo trabajador directo o de empresa temporal que vaya a participar en ellas debe cumplir los protocolos definidos.</p>
 
@@ -2450,7 +2453,7 @@ section ul li input[type="checkbox"] {
     <img src="https://i.postimg.cc/CLSFNhyN/LOGO-PBI-CASCO-BLANCO.png" alt="Personaje PBI con EPP">
   </div>
 
-  <h2>8. SEGURIDAD VIAL EN CAMPO Y TRAYECTOS LABORALES</h2>
+  <h2>5. SEGURIDAD VIAL EN CAMPO Y TRAYECTOS LABORALES</h2>
 
   <p>🚘 La seguridad vial es parte integral de la cultura preventiva de PBI. Ya sea conduciendo, como pasajero o peatón, dentro del proyecto o durante traslados externos, cada trabajador es responsable de promover comportamientos seguros.</p>
 
@@ -2505,7 +2508,7 @@ section ul li input[type="checkbox"] {
     <img src="https://i.postimg.cc/CLSFNhyN/LOGO-PBI-CASCO-BLANCO.png" alt="Personaje PBI con EPP">
   </div>
 
-  <h2>9. PLAN DE EMERGENCIAS EN PROYECTOS OPERATIVOS</h2>
+  <h2>6. PLAN DE EMERGENCIAS EN PROYECTOS OPERATIVOS</h2>
 
   <p>🚨 En nuestras operaciones existe riesgo de eventos como fugas de gas, incendios, explosiones, derrames de sustancias químicas o fenómenos naturales. Por eso, cada instalación cuenta con un <strong>Plan de Emergencias</strong> adaptado a sus riesgos específicos.</p>
 
@@ -2618,45 +2621,49 @@ section ul li input[type="checkbox"] {
 </section>
 <section id="quiz-capitulo2" class="quiz-section">
   <h2>🧠 Quiz de Seguridad y Cultura Preventiva</h2>
-  <p>Responde correctamente para avanzar al Capítulo III – Gestión Ambiental.</p>
+  <p style="text-align: center; max-width: 700px; margin: 0 auto 25px;">
+    Responde correctamente para avanzar al <strong>Capítulo III – Gestión Ambiental</strong>.
+  </p>
 
-  <div class="quiz-pregunta">
-    <p><strong>1. ¿Cuál es el primer paso ante una situación de emergencia?</strong></p>
-    <label><input type="radio" name="q1" value="a"> Esperar instrucciones sin hacer nada.</label><br>
-    <label><input type="radio" name="q1" value="b"> Correr hacia la salida más cercana.</label><br>
-    <label><input type="radio" name="q1" value="c"> Mantener la calma y seguir el plan de emergencia establecido. ✅</label>
-  </div>
+  <form id="quizSeguridadCultura">
+    <div class="quiz-pregunta" style="margin-bottom: 25px;">
+      <p><strong>1. ¿Cuál es el primer paso ante una situación de emergencia?</strong></p>
+      <label><input type="radio" name="q1" value="a"> Esperar instrucciones sin hacer nada.</label><br>
+      <label><input type="radio" name="q1" value="b"> Correr hacia la salida más cercana.</label><br>
+      <label><input type="radio" name="q1" value="c"> Mantener la calma y seguir el plan de emergencia establecido.</label>
+    </div>
 
-  <div class="quiz-pregunta">
-    <p><strong>2. ¿Qué actitud refleja una cultura de seguridad?</strong></p>
-    <label><input type="radio" name="q2" value="a"> Cumplir normas solo cuando hay supervisión.</label><br>
-    <label><input type="radio" name="q2" value="b"> Reportar condiciones inseguras y actuar con responsabilidad. ✅</label><br>
-    <label><input type="radio" name="q2" value="c"> Esperar a que otro se encargue de los riesgos.</label>
-  </div>
+    <div class="quiz-pregunta" style="margin-bottom: 25px;">
+      <p><strong>2. ¿Qué actitud refleja una cultura de seguridad?</strong></p>
+      <label><input type="radio" name="q2" value="a"> Cumplir normas solo cuando hay supervisión.</label><br>
+      <label><input type="radio" name="q2" value="b"> Reportar condiciones inseguras y actuar con responsabilidad.</label><br>
+      <label><input type="radio" name="q2" value="c"> Esperar a que otro se encargue de los riesgos.</label>
+    </div>
 
-  <div class="quiz-pregunta">
-    <p><strong>3. ¿Cuál de los siguientes es un compromiso dentro de la Política HSEQ?</strong></p>
-    <label><input type="radio" name="q3" value="a"> Proteger únicamente los activos físicos de la empresa.</label><br>
-    <label><input type="radio" name="q3" value="b"> Garantizar la seguridad, la salud, el ambiente y la calidad. ✅</label><br>
-    <label><input type="radio" name="q3" value="c"> Priorizar la productividad sobre la seguridad.</label>
-  </div>
+    <div class="quiz-pregunta" style="margin-bottom: 25px;">
+      <p><strong>3. ¿Cuál de los siguientes es un compromiso dentro de la Política HSEQ?</strong></p>
+      <label><input type="radio" name="q3" value="a"> Proteger únicamente los activos físicos de la empresa.</label><br>
+      <label><input type="radio" name="q3" value="b"> Garantizar la seguridad, la salud, el ambiente y la calidad.</label><br>
+      <label><input type="radio" name="q3" value="c"> Priorizar la productividad sobre la seguridad.</label>
+    </div>
 
-  <div class="quiz-pregunta">
-    <p><strong>4. ¿Qué debe hacer una persona si observa un acto inseguro?</strong></p>
-    <label><input type="radio" name="q4" value="a"> Ignorarlo si no le afecta directamente.</label><br>
-    <label><input type="radio" name="q4" value="b"> Reportarlo o intervenir con respeto para prevenir incidentes. ✅</label><br>
-    <label><input type="radio" name="q4" value="c"> Esperar a que lo resuelva el jefe inmediato.</label>
-  </div>
+    <div class="quiz-pregunta" style="margin-bottom: 25px;">
+      <p><strong>4. ¿Qué debe hacer una persona si observa un acto inseguro?</strong></p>
+      <label><input type="radio" name="q4" value="a"> Ignorarlo si no le afecta directamente.</label><br>
+      <label><input type="radio" name="q4" value="b"> Reportarlo o intervenir con respeto para prevenir incidentes.</label><br>
+      <label><input type="radio" name="q4" value="c"> Esperar a que lo resuelva el jefe inmediato.</label>
+    </div>
 
-  <div class="quiz-pregunta">
-    <p><strong>5. ¿A quiénes aplica la Política HSEQ de la organización?</strong></p>
-    <label><input type="radio" name="q5" value="a"> Solo a trabajadores del área operativa.</label><br>
-    <label><input type="radio" name="q5" value="b"> A todos los niveles y roles dentro de la organización. ✅</label><br>
-    <label><input type="radio" name="q5" value="c"> Solo a contratistas temporales.</label>
-  </div>
+    <div class="quiz-pregunta" style="margin-bottom: 30px;">
+      <p><strong>5. ¿A quiénes aplica la Política HSEQ de la organización?</strong></p>
+      <label><input type="radio" name="q5" value="a"> Solo a trabajadores del área operativa.</label><br>
+      <label><input type="radio" name="q5" value="b"> A todos los niveles y roles dentro de la organización.</label><br>
+      <label><input type="radio" name="q5" value="c"> Solo a contratistas temporales.</label>
+    </div>
 
-  <button onclick="validarTriviaCapitulo2()">📤 Enviar respuestas</button>
-  <p id="resultadoQuizCap2" style="margin-top: 15px;"></p>
+    <button type="button" onclick="validarTriviaCapitulo2()" style="margin-top: 20px;">📤 Enviar respuestas</button>
+    <p id="resultadoQuizCap2" style="margin-top: 20px; font-weight: bold;"></p>
+  </form>
 </section>
 <section id="gestion-ambiental">
   <div class="img-superior-derecha">
@@ -2961,45 +2968,49 @@ section ul li input[type="checkbox"] {
 
 <section id="quiz-capitulo3" class="quiz-section">
   <h2>🌿 Quiz – Gestión Ambiental y Sostenibilidad</h2>
-  <p>Responde correctamente para completar el capítulo y continuar con el cierre de la inducción.</p>
+  <p style="text-align: center; max-width: 700px; margin: 0 auto 25px;">
+    Responde correctamente para completar el capítulo y continuar con el cierre de la inducción.
+  </p>
 
-  <div class="quiz-pregunta">
-    <p><strong>1. ¿Cuál es el color del contenedor destinado a residuos aprovechables?</strong></p>
-    <label><input type="radio" name="q1" value="a"> Blanco ✅</label><br>
-    <label><input type="radio" name="q1" value="b"> Verde</label><br>
-    <label><input type="radio" name="q1" value="c"> Negro</label>
-  </div>
+  <form id="quizCapitulo3">
+    <div class="quiz-pregunta" style="margin-bottom: 25px;">
+      <p><strong>1. ¿Cuál es el color del contenedor destinado a residuos aprovechables?</strong></p>
+      <label><input type="radio" name="q1" value="a"> Blanco</label><br>
+      <label><input type="radio" name="q1" value="b"> Verde</label><br>
+      <label><input type="radio" name="q1" value="c"> Negro</label>
+    </div>
 
-  <div class="quiz-pregunta">
-    <p><strong>2. ¿Qué práctica contribuye al ahorro de energía en el trabajo?</strong></p>
-    <label><input type="radio" name="q2" value="a"> Dejar los cargadores conectados</label><br>
-    <label><input type="radio" name="q2" value="b"> Apagar luces y equipos cuando no se usen ✅</label><br>
-    <label><input type="radio" name="q2" value="c"> Imprimir correos innecesarios</label>
-  </div>
+    <div class="quiz-pregunta" style="margin-bottom: 25px;">
+      <p><strong>2. ¿Qué práctica contribuye al ahorro de energía en el trabajo?</strong></p>
+      <label><input type="radio" name="q2" value="a"> Dejar los cargadores conectados</label><br>
+      <label><input type="radio" name="q2" value="b"> Apagar luces y equipos cuando no se usen</label><br>
+      <label><input type="radio" name="q2" value="c"> Imprimir correos innecesarios</label>
+    </div>
 
-  <div class="quiz-pregunta">
-    <p><strong>3. ¿Qué impacto ambiental es típico en nuestras operaciones?</strong></p>
-    <label><input type="radio" name="q3" value="a"> Agotamiento de recursos naturales ✅</label><br>
-    <label><input type="radio" name="q3" value="b"> Vertimientos directos a fuentes hídricas</label><br>
-    <label><input type="radio" name="q3" value="c"> Tala industrial de bosques</label>
-  </div>
+    <div class="quiz-pregunta" style="margin-bottom: 25px;">
+      <p><strong>3. ¿Qué impacto ambiental es típico en nuestras operaciones?</strong></p>
+      <label><input type="radio" name="q3" value="a"> Agotamiento de recursos naturales</label><br>
+      <label><input type="radio" name="q3" value="b"> Vertimientos directos a fuentes hídricas</label><br>
+      <label><input type="radio" name="q3" value="c"> Tala industrial de bosques</label>
+    </div>
 
-  <div class="quiz-pregunta">
-    <p><strong>4. ¿Cuál es una forma correcta de proteger la fauna en campo?</strong></p>
-    <label><input type="radio" name="q4" value="a"> Alimentar a los animales silvestres</label><br>
-    <label><input type="radio" name="q4" value="b"> Tomar crías de animales para cuidarlas</label><br>
-    <label><input type="radio" name="q4" value="c"> Respetar los hábitats naturales ✅</label>
-  </div>
+    <div class="quiz-pregunta" style="margin-bottom: 25px;">
+      <p><strong>4. ¿Cuál es una forma correcta de proteger la fauna en campo?</strong></p>
+      <label><input type="radio" name="q4" value="a"> Alimentar a los animales silvestres</label><br>
+      <label><input type="radio" name="q4" value="b"> Tomar crías de animales para cuidarlas</label><br>
+      <label><input type="radio" name="q4" value="c"> Respetar los hábitats naturales</label>
+    </div>
 
-  <div class="quiz-pregunta">
-    <p><strong>5. ¿Qué acción es parte de un hábito sostenible diario?</strong></p>
-    <label><input type="radio" name="q5" value="a"> Usar botella reutilizable ✅</label><br>
-    <label><input type="radio" name="q5" value="b"> Comprar botellas plásticas a diario</label><br>
-    <label><input type="radio" name="q5" value="c"> Imprimir todo en papel nuevo</label>
-  </div>
+    <div class="quiz-pregunta" style="margin-bottom: 30px;">
+      <p><strong>5. ¿Qué acción es parte de un hábito sostenible diario?</strong></p>
+      <label><input type="radio" name="q5" value="a"> Usar botella reutilizable</label><br>
+      <label><input type="radio" name="q5" value="b"> Comprar botellas plásticas a diario</label><br>
+      <label><input type="radio" name="q5" value="q5"> Imprimir todo en papel nuevo</label>
+    </div>
 
-  <button onclick="validarQuizCapitulo3()">📤 Enviar respuestas</button>
-  <p id="resultadoQuizCap3" style="margin-top: 15px;"></p>
+    <button type="button" onclick="validarQuizCapitulo3()" style="margin-top: 20px;">📤 Enviar respuestas</button>
+    <p id="resultadoQuizCap3" style="margin-top: 20px; font-weight: bold;"></p>
+  </form>
 </section>
 
 <section id="capitulo4-cierre">
