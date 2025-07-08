@@ -3075,6 +3075,7 @@ section ul li input[type="checkbox"] {
 <script>
   let current = 0;
   let sections = [];
+  let quizCapitulo3Aprobado = false;
 
   function actualizarSecciones() {
     const rol = document.getElementById("rolSeleccionado")?.value;
@@ -3172,7 +3173,7 @@ section ul li input[type="checkbox"] {
       mostrarAdvertencia("⚠️ Debes responder correctamente todas las preguntas del quiz para continuar.");
       return;
     }
-   if (id === "quiz-capitulo3" && !document.getElementById("resultadoQuizCap3")?.innerHTML.includes("¡Muy bien!")) {
+    if (id === "quiz-capitulo3" && !quizCapitulo3Aprobado) {
       mostrarAdvertencia("⚠️ Resuelve el quiz para continuar.");
       return;
     }
@@ -3269,35 +3270,36 @@ section ul li input[type="checkbox"] {
     }
   }
 
- function validarQuizCapitulo3() {
-  const respuestas = {
-    q1: "a", // Blanco
-    q2: "b", // Apagar luces y equipos cuando no se usen
-    q3: "a", // Agotamiento de recursos naturales
-    q4: "c", // Respetar los hábitats naturales
-    q5: "a"  // Usar botella reutilizable
-  };
+  function validarQuizCapitulo3() {
+    const respuestas = {
+      q1: "a",
+      q2: "b",
+      q3: "a",
+      q4: "c",
+      q5: "a"
+    };
 
-  let correctas = 0;
-  for (const [pregunta, correcta] of Object.entries(respuestas)) {
-    const seleccionada = document.querySelector(`input[name="${pregunta}"]:checked`);
-    if (seleccionada && seleccionada.value === correcta) correctas++;
+    let correctas = 0;
+    for (const [pregunta, correcta] of Object.entries(respuestas)) {
+      const seleccionada = document.querySelector(`input[name="${pregunta}"]:checked`);
+      if (seleccionada && seleccionada.value === correcta) correctas++;
+    }
+
+    const resultado = document.getElementById("resultadoQuizCap3");
+    if (!resultado) return;
+
+    if (correctas === Object.keys(respuestas).length) {
+      resultado.innerHTML = "✅ ¡Muy bien! Has respondido correctamente todas las preguntas.";
+      resultado.style.color = "green";
+      activarBotonSiguiente();
+      quizCapitulo3Aprobado = true;
+    } else {
+      resultado.innerHTML = "⚠️ Por favor responde correctamente todas las preguntas para continuar.";
+      resultado.style.color = "red";
+      desactivarBotonSiguiente();
+      quizCapitulo3Aprobado = false;
+    }
   }
-
-  const resultado = document.getElementById("resultadoQuizCap3");
-  if (!resultado) return;
-
-  if (correctas === Object.keys(respuestas).length) {
-    resultado.innerHTML = "✅ ¡Muy bien! Has respondido correctamente todas las preguntas.";
-    resultado.style.color = "green";
-    activarBotonSiguiente();
-  } else {
-    resultado.innerHTML = "⚠️ Por favor responde correctamente todas las preguntas para continuar.";
-    resultado.style.color = "red";
-    desactivarBotonSiguiente();
-  }
-}
-
 
   function contarCorrectas(respuestas) {
     let aciertos = 0;
