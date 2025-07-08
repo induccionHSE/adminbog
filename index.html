@@ -3071,6 +3071,7 @@ section ul li input[type="checkbox"] {
 <script>
   let current = 0;
   let sections = [];
+  let quizCapitulo3Aprobado = false;
   
   function actualizarSecciones() {
     const rol = document.getElementById("rolSeleccionado")?.value;
@@ -3266,14 +3267,7 @@ section ul li input[type="checkbox"] {
   }
 
   function validarQuizCapitulo3() {
-    const respuestas = {
-      q1: "a",
-      q2: "b",
-      q3: "a",
-      q4: "c",
-      q5: "a"
-    };
-
+    const respuestas = {q1: "a", q2: "b", q3: "a", q4: "c", q5: "a" };
     let correctas = 0;
     for (const [pregunta, correcta] of Object.entries(respuestas)) {
       const seleccionada = document.querySelector(`input[name="${pregunta}"]:checked`);
