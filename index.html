@@ -3072,7 +3072,7 @@ section ul li input[type="checkbox"] {
   let current = 0;
   let sections = [];
   let quizCapitulo3Aprobado = false;
-  
+
   function actualizarSecciones() {
     const rol = document.getElementById("rolSeleccionado")?.value;
     const seccionActualId = sections[current]?.id || null;
@@ -3130,7 +3130,13 @@ section ul li input[type="checkbox"] {
     } else if (id === "verificacion-vial") {
       actualizarBotonSiguienteVial();
       document.getElementById("check-vial")?.addEventListener("change", actualizarBotonSiguienteVial);
-    } else if (id === "trivia-sgrl" || id === "trivia-seguridad-comportamiento" || id === "quiz-capitulo2" || id === "quiz-capitulo3") {
+    } else if (id === "quiz-capitulo3") {
+      if (quizCapitulo3Aprobado) {
+        activarBotonSiguiente();
+      } else {
+        desactivarBotonSiguiente();
+      }
+    } else if (id === "trivia-sgrl" || id === "trivia-seguridad-comportamiento" || id === "quiz-capitulo2") {
       desactivarBotonSiguiente();
     } else {
       activarBotonSiguiente();
@@ -3267,7 +3273,7 @@ section ul li input[type="checkbox"] {
   }
 
   function validarQuizCapitulo3() {
-    const respuestas = {q1: "a", q2: "b", q3: "a", q4: "c", q5: "a" };
+    const respuestas = { q1: "a", q2: "b", q3: "a", q4: "c", q5: "a" };
     let correctas = 0;
     for (const [pregunta, correcta] of Object.entries(respuestas)) {
       const seleccionada = document.querySelector(`input[name="${pregunta}"]:checked`);
@@ -3315,9 +3321,7 @@ section ul li input[type="checkbox"] {
 
   document.addEventListener("DOMContentLoaded", () => {
     actualizarSecciones();
-
     document.getElementById("rolSeleccionado")?.addEventListener("change", filtrarContenidoPorRol);
-
     document.querySelectorAll(".acordeon").forEach(btn => {
       btn.addEventListener("click", function () {
         this.classList.toggle("activo");
@@ -3327,6 +3331,7 @@ section ul li input[type="checkbox"] {
     });
   });
 </script>
+
 
 </body>
 </html>
