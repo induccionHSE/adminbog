@@ -3069,7 +3069,7 @@ section ul li input[type="checkbox"] {
       mostrarAdvertencia("⚠️ Debes responder correctamente todas las preguntas del quiz para continuar.");
       return;
     }
-    if (id === "quiz-capitulo3" && !document.getElementById("resultadoQuizCap3")?.textContent.includes("Obtuviste")) {
+   if (id === "quiz-capitulo3" && !document.getElementById("resultadoQuizCap3")?.innerHTML.includes("✅ Obtuviste")) {
       mostrarAdvertencia("⚠️ Resuelve el quiz para continuar.");
       return;
     }
