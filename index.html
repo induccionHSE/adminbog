@@ -2522,52 +2522,49 @@ section ul li input[type="checkbox"] {
     📌 Revisa siempre la etiqueta del extintor: indica su clase y uso. Si observas un extintor descargado o dañado, repórtalo de inmediato. En PBI, todos somos corresponsables de mantener los equipos en condiciones seguras.
   </p>
 </section>
-<section id="quiz-seguridad" class="quiz-section">
-  <h2>🎯 Quiz de Seguridad y Cultura Preventiva</h2>
-  <p>Responde las siguientes preguntas para continuar al Capítulo III – Gestión Ambiental.</p>
+<section id="quiz-capitulo2" class="quiz-section">
+  <h2>🧠 Quiz de Seguridad y Cultura Preventiva</h2>
+  <p>Responde correctamente para avanzar al Capítulo III – Gestión Ambiental.</p>
 
-  <form id="quizForm">
-    <div class="quiz-pregunta">
-      <p><strong>1. ¿Qué debes hacer en caso de emergencia?</strong></p>
-      <label><input type="radio" name="q1" value="a"> Correr hacia la salida más cercana.</label><br>
-      <label><input type="radio" name="q1" value="b"> Esperar a que alguien te diga qué hacer.</label><br>
-      <label><input type="radio" name="q1" value="c"> ✅ Mantener la calma y seguir las instrucciones del brigadista.</label>
-    </div>
+  <div class="quiz-pregunta">
+    <p><strong>1. ¿Cuál es el primer paso ante una situación de emergencia?</strong></p>
+    <label><input type="radio" name="q1" value="a"> Esperar instrucciones sin hacer nada.</label><br>
+    <label><input type="radio" name="q1" value="b"> Correr hacia la salida más cercana.</label><br>
+    <label><input type="radio" name="q1" value="c"> Mantener la calma y seguir el plan de emergencia establecido. ✅</label>
+  </div>
 
-    <div class="quiz-pregunta">
-      <p><strong>2. Marca los riesgos que podrías encontrar en campo:</strong></p>
-      <label><input type="checkbox" name="q2" value="a"> Riesgo eléctrico</label><br>
-      <label><input type="checkbox" name="q2" value="b"> Ergonomía</label><br>
-      <label><input type="checkbox" name="q2" value="c"> Peligro ofídico</label><br>
-      <label><input type="checkbox" name="q2" value="d"> Uso de redes sociales</label>
-    </div>
+  <div class="quiz-pregunta">
+    <p><strong>2. ¿Qué actitud refleja una cultura de seguridad?</strong></p>
+    <label><input type="radio" name="q2" value="a"> Cumplir normas solo cuando hay supervisión.</label><br>
+    <label><input type="radio" name="q2" value="b"> Reportar condiciones inseguras y actuar con responsabilidad. ✅</label><br>
+    <label><input type="radio" name="q2" value="c"> Esperar a que otro se encargue de los riesgos.</label>
+  </div>
 
-    <div class="quiz-pregunta">
-      <p><strong>3. ¿Cuál es el compromiso de la Política HSEQ de PBI?</strong></p>
-      <label><input type="radio" name="q3" value="a"> Solo cumplir la norma ISO 9001.</label><br>
-      <label><input type="radio" name="q3" value="b"> ✅ Prevenir incidentes, proteger el ambiente y mejorar continuamente.</label><br>
-      <label><input type="radio" name="q3" value="c"> Lograr metas comerciales sin importar los medios.</label>
-    </div>
+  <div class="quiz-pregunta">
+    <p><strong>3. ¿Cuál de los siguientes es un compromiso dentro de la Política HSEQ?</strong></p>
+    <label><input type="radio" name="q3" value="a"> Proteger únicamente los activos físicos de la empresa.</label><br>
+    <label><input type="radio" name="q3" value="b"> Garantizar la seguridad, la salud, el ambiente y la calidad. ✅</label><br>
+    <label><input type="radio" name="q3" value="c"> Priorizar la productividad sobre la seguridad.</label>
+  </div>
 
-    <div class="quiz-pregunta">
-      <p><strong>4. En seguridad vial, ¿cuáles prácticas son obligatorias?</strong></p>
-      <label><input type="checkbox" name="q4" value="a"> ✅ Usar cinturón de seguridad.</label><br>
-      <label><input type="checkbox" name="q4" value="b"> ✅ No usar el celular mientras conduces.</label><br>
-      <label><input type="checkbox" name="q4" value="c"> Hacer llamadas si estás solo en trayecto.</label>
-    </div>
+  <div class="quiz-pregunta">
+    <p><strong>4. ¿Qué debe hacer una persona si observa un acto inseguro?</strong></p>
+    <label><input type="radio" name="q4" value="a"> Ignorarlo si no le afecta directamente.</label><br>
+    <label><input type="radio" name="q4" value="b"> Reportarlo o intervenir con respeto para prevenir incidentes. ✅</label><br>
+    <label><input type="radio" name="q4" value="c"> Esperar a que lo resuelva el jefe inmediato.</label>
+  </div>
 
-    <div class="quiz-pregunta">
-      <p><strong>5. ¿Qué debes hacer si observas un comportamiento inseguro?</strong></p>
-      <label><input type="radio" name="q5" value="a"> ✅ Reportarlo inmediatamente al supervisor o HSEQ.</label><br>
-      <label><input type="radio" name="q5" value="b"> Ignorarlo si no te afecta directamente.</label><br>
-      <label><input type="radio" name="q5" value="c"> Publicarlo en redes sociales.</label>
-    </div>
+  <div class="quiz-pregunta">
+    <p><strong>5. ¿A quiénes aplica la Política HSEQ de la organización?</strong></p>
+    <label><input type="radio" name="q5" value="a"> Solo a trabajadores del área operativa.</label><br>
+    <label><input type="radio" name="q5" value="b"> A todos los niveles y roles dentro de la organización. ✅</label><br>
+    <label><input type="radio" name="q5" value="c"> Solo a contratistas temporales.</label>
+  </div>
 
-    <button type="button" onclick="validarQuiz()">📋 Enviar respuestas</button>
-  </form>
-
-  <div id="quizResultado" style="margin-top: 20px; font-weight: bold;"></div>
+  <button onclick="validarTriviaCapitulo2()">📤 Enviar respuestas</button>
+  <p id="resultadoQuizCap2" style="margin-top: 15px;"></p>
 </section>
+
 <section id="capitulo-3">
   <h2>♻️ Capítulo III: Gestión Ambiental en PBI</h2>
   <p>En PBI nos comprometemos con la protección del medio ambiente. Cada acción que tomamos tiene un impacto. Por eso, promovemos una cultura de prevención, uso eficiente de los recursos
@@ -2606,10 +2603,8 @@ section ul li input[type="checkbox"] {
 
   function filtrarContenidoPorRol() {
     const rol = document.getElementById("rolSeleccionado")?.value;
-
     document.querySelectorAll('[data-rol]').forEach(sec => sec.style.display = "none");
     document.querySelectorAll(`[data-rol="${rol}"]`).forEach(sec => sec.style.display = "block");
-
     actualizarSecciones();
   }
 
@@ -2628,7 +2623,6 @@ section ul li input[type="checkbox"] {
     document.getElementById("advertencia-check")?.remove();
 
     const id = sections[index]?.id;
-
     if (id === "verificacion-cap1") {
       actualizarBotonSiguienteVerificacion();
       sections[index].querySelectorAll('input[type="checkbox"]').forEach(cb =>
@@ -2643,7 +2637,11 @@ section ul li input[type="checkbox"] {
     } else if (id === "verificacion-vial") {
       actualizarBotonSiguienteVial();
       document.getElementById("check-vial")?.addEventListener("change", actualizarBotonSiguienteVial);
-    } else if (id === "trivia-sgrl" || id === "trivia-seguridad-comportamiento") {
+    } else if (id === "trivia-sgrl") {
+      desactivarBotonSiguiente();
+    } else if (id === "trivia-seguridad-comportamiento") {
+      desactivarBotonSiguiente();
+    } else if (id === "quiz-capitulo2") {
       desactivarBotonSiguiente();
     } else {
       activarBotonSiguiente();
@@ -2676,6 +2674,10 @@ section ul li input[type="checkbox"] {
     }
     if (id === "trivia-seguridad-comportamiento" && !document.getElementById("resultadoTriviaSeguridad")?.textContent.includes("¡Muy bien!")) {
       mostrarAdvertencia("⚠️ Resuelve correctamente la trivia antes de continuar.");
+      return;
+    }
+    if (id === "quiz-capitulo2" && !document.getElementById("resultadoQuizCap2")?.textContent.includes("¡Muy bien!")) {
+      mostrarAdvertencia("⚠️ Debes responder correctamente todas las preguntas del quiz para continuar.");
       return;
     }
 
@@ -2747,6 +2749,31 @@ section ul li input[type="checkbox"] {
     const respuestas = { sc_p1: "c", sc_p2: "b", sc_p3: "b", sc_p4: "c" };
     let correctas = contarCorrectas(respuestas);
     mostrarResultadoTrivia(correctas === 4, "resultadoTriviaSeguridad");
+  }
+
+  function validarTriviaCapitulo2() {
+    const respuestas = { q1: "c", q2: "b", q3: "b", q4: "b", q5: "b" };
+    let correctas = 0;
+
+    for (const [pregunta, correcta] of Object.entries(respuestas)) {
+      const seleccionada = document.querySelector(`input[name="${pregunta}"]:checked`);
+      if (seleccionada && seleccionada.value === correcta) {
+        correctas++;
+      }
+    }
+
+    const resultado = document.getElementById("resultadoQuizCap2");
+    if (!resultado) return;
+
+    if (correctas === Object.keys(respuestas).length) {
+      resultado.innerHTML = "✅ ¡Muy bien! Has respondido correctamente todas las preguntas.";
+      resultado.style.color = "green";
+      activarBotonSiguiente();
+    } else {
+      resultado.innerHTML = "⚠️ Por favor responde correctamente todas las preguntas para continuar.";
+      resultado.style.color = "red";
+      desactivarBotonSiguiente();
+    }
   }
 
   function contarCorrectas(respuestas) {
