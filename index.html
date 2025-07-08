@@ -2966,7 +2966,7 @@ section ul li input[type="checkbox"] {
   </div>
 </section>
 
-mismo caso con <section id="quiz-capitulo3" class="quiz-section">
+<section id="quiz-capitulo3" class="quiz-section">
   <h2>🌿 Quiz – Gestión Ambiental y Sostenibilidad</h2>
   <p>Responde correctamente para completar el capítulo y continuar con el cierre de la inducción.</p>
 
@@ -3071,8 +3071,7 @@ mismo caso con <section id="quiz-capitulo3" class="quiz-section">
 <script>
   let current = 0;
   let sections = [];
-  let quizCapitulo3Aprobado = false;
-
+  
   function actualizarSecciones() {
     const rol = document.getElementById("rolSeleccionado")?.value;
     const seccionActualId = sections[current]?.id || null;
