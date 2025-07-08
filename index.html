@@ -2975,23 +2975,23 @@ section ul li input[type="checkbox"] {
   <form id="quizCapitulo3">
     <div class="quiz-pregunta" style="margin-bottom: 25px;">
       <p><strong>1. ¿Cuál es el color del contenedor destinado a residuos aprovechables?</strong></p>
-      <label><input type="radio" name="q1" value="a"> Blanco </label><br>
-      <label><input type="radio" name="q1" value="b"> Verde</label><br>
-      <label><input type="radio" name="q1" value="c"> Negro</label>
+      <label><input type="radio" name="cq1" value="a"> Blanco </label><br>
+      <label><input type="radio" name="cq1" value="b"> Verde</label><br>
+      <label><input type="radio" name="cq1" value="c"> Negro</label>
     </div>
 
     <div class="quiz-pregunta" style="margin-bottom: 25px;">
       <p><strong>2. ¿Qué práctica contribuye al ahorro de energía en el trabajo?</strong></p>
-      <label><input type="radio" name="q2" value="a"> Dejar los cargadores conectados</label><br>
-      <label><input type="radio" name="q2" value="b"> Apagar luces y equipos cuando no se usen</label><br>
-      <label><input type="radio" name="q2" value="c"> Imprimir correos innecesarios</label>
+      <label><input type="radio" name="cq2" value="a"> Dejar los cargadores conectados</label><br>
+      <label><input type="radio" name="cq2" value="b"> Apagar luces y equipos cuando no se usen</label><br>
+      <label><input type="radio" name="cq2" value="c"> Imprimir correos innecesarios</label>
     </div>
 
     <div class="quiz-pregunta" style="margin-bottom: 25px;">
       <p><strong>3. ¿Qué impacto ambiental es típico en nuestras operaciones?</strong></p>
-      <label><input type="radio" name="q3" value="a"> Agotamiento de recursos naturales</label><br>
-      <label><input type="radio" name="q3" value="b"> Vertimientos directos a fuentes hídricas</label><br>
-      <label><input type="radio" name="q3" value="c"> Tala industrial de bosques</label>
+      <label><input type="radio" name="cq3" value="a"> Agotamiento de recursos naturales</label><br>
+      <label><input type="radio" name="cq3" value="b"> Vertimientos directos a fuentes hídricas</label><br>
+      <label><input type="radio" name="cq3" value="c"> Tala industrial de bosques</label>
     </div>
 
     <div class="quiz-pregunta" style="margin-bottom: 25px;">
@@ -3282,7 +3282,7 @@ section ul li input[type="checkbox"] {
   }
 
   function validarQuizCapitulo3() {
-    const respuestas = { q1: "a", q2: "b", q3: "a", q4: "c", q5: "a" };
+    const respuestas = { cq1: "a", cq2: "b", cq3: "a", cq4: "c", cq5: "a" };
     let correctas = 0;
     for (const [pregunta, correcta] of Object.entries(respuestas)) {
       const seleccionada = document.querySelector(`input[name="${pregunta}"]:checked`);
