@@ -474,7 +474,26 @@ section ul li input[type="checkbox"] {
     grid-template-columns: 1fr !important;
   }
 }
+  .quiz-pregunta {
+      background: #f9f9f9;
+      padding: 15px;
+      border-left: 4px solid #003366;
+      margin-bottom: 20px;
+      border-radius: 8px;
+    }
 
+    .quiz-section button {
+      padding: 10px 20px;
+      background: #003366;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .quiz-section button:hover {
+      background: #005b99;
+    }
   </style>
 </head>
 <body>
@@ -2503,7 +2522,52 @@ section ul li input[type="checkbox"] {
     📌 Revisa siempre la etiqueta del extintor: indica su clase y uso. Si observas un extintor descargado o dañado, repórtalo de inmediato. En PBI, todos somos corresponsables de mantener los equipos en condiciones seguras.
   </p>
 </section>
+<section id="quiz-seguridad" class="quiz-section">
+  <h2>🎯 Quiz de Seguridad y Cultura Preventiva</h2>
+  <p>Responde las siguientes preguntas para continuar al Capítulo III – Gestión Ambiental.</p>
 
+  <form id="quizForm">
+    <div class="quiz-pregunta">
+      <p><strong>1. ¿Qué debes hacer en caso de emergencia?</strong></p>
+      <label><input type="radio" name="q1" value="a"> Correr hacia la salida más cercana.</label><br>
+      <label><input type="radio" name="q1" value="b"> Esperar a que alguien te diga qué hacer.</label><br>
+      <label><input type="radio" name="q1" value="c"> ✅ Mantener la calma y seguir las instrucciones del brigadista.</label>
+    </div>
+
+    <div class="quiz-pregunta">
+      <p><strong>2. Marca los riesgos que podrías encontrar en campo:</strong></p>
+      <label><input type="checkbox" name="q2" value="a"> Riesgo eléctrico</label><br>
+      <label><input type="checkbox" name="q2" value="b"> Ergonomía</label><br>
+      <label><input type="checkbox" name="q2" value="c"> Peligro ofídico</label><br>
+      <label><input type="checkbox" name="q2" value="d"> Uso de redes sociales</label>
+    </div>
+
+    <div class="quiz-pregunta">
+      <p><strong>3. ¿Cuál es el compromiso de la Política HSEQ de PBI?</strong></p>
+      <label><input type="radio" name="q3" value="a"> Solo cumplir la norma ISO 9001.</label><br>
+      <label><input type="radio" name="q3" value="b"> ✅ Prevenir incidentes, proteger el ambiente y mejorar continuamente.</label><br>
+      <label><input type="radio" name="q3" value="c"> Lograr metas comerciales sin importar los medios.</label>
+    </div>
+
+    <div class="quiz-pregunta">
+      <p><strong>4. En seguridad vial, ¿cuáles prácticas son obligatorias?</strong></p>
+      <label><input type="checkbox" name="q4" value="a"> ✅ Usar cinturón de seguridad.</label><br>
+      <label><input type="checkbox" name="q4" value="b"> ✅ No usar el celular mientras conduces.</label><br>
+      <label><input type="checkbox" name="q4" value="c"> Hacer llamadas si estás solo en trayecto.</label>
+    </div>
+
+    <div class="quiz-pregunta">
+      <p><strong>5. ¿Qué debes hacer si observas un comportamiento inseguro?</strong></p>
+      <label><input type="radio" name="q5" value="a"> ✅ Reportarlo inmediatamente al supervisor o HSEQ.</label><br>
+      <label><input type="radio" name="q5" value="b"> Ignorarlo si no te afecta directamente.</label><br>
+      <label><input type="radio" name="q5" value="c"> Publicarlo en redes sociales.</label>
+    </div>
+
+    <button type="button" onclick="validarQuiz()">📋 Enviar respuestas</button>
+  </form>
+
+  <div id="quizResultado" style="margin-top: 20px; font-weight: bold;"></div>
+</section>
 </div>
 
 <div class="nav-buttons">
@@ -2518,7 +2582,6 @@ section ul li input[type="checkbox"] {
     const rol = document.getElementById("rolSeleccionado")?.value;
     const seccionActualId = sections[current]?.id || null;
 
-    // Filtra las secciones visibles (sin data-rol o con data-rol == seleccionado)
     sections = Array.from(document.querySelectorAll("section")).filter(sec => {
       const dataRol = sec.getAttribute("data-rol");
       return !dataRol || dataRol === rol;
@@ -2526,7 +2589,6 @@ section ul li input[type="checkbox"] {
 
     sections.forEach(sec => sec.style.display = "none");
 
-    // Si ya estábamos en una sección válida, mantenla
     let nuevaPosicion = 0;
     if (seccionActualId) {
       const idx = sections.findIndex(sec => sec.id === seccionActualId);
@@ -2540,10 +2602,7 @@ section ul li input[type="checkbox"] {
   function filtrarContenidoPorRol() {
     const rol = document.getElementById("rolSeleccionado")?.value;
 
-    // Oculta todas las secciones específicas
     document.querySelectorAll('[data-rol]').forEach(sec => sec.style.display = "none");
-
-    // Muestra las del rol elegido
     document.querySelectorAll(`[data-rol="${rol}"]`).forEach(sec => sec.style.display = "block");
 
     actualizarSecciones();
@@ -2555,24 +2614,21 @@ section ul li input[type="checkbox"] {
       s.classList.toggle("active", i === index);
     });
 
-    const btnAnterior = document.getElementById("btnAnterior");
-    const btnSiguiente = document.getElementById("btnSiguiente");
-
-    btnAnterior.style.display = (index === 0) ? "none" : "inline-block";
-    btnSiguiente.style.display = (index === sections.length - 1) ? "none" : "inline-block";
+    document.getElementById("btnAnterior").style.display = (index === 0) ? "none" : "inline-block";
+    document.getElementById("btnSiguiente").style.display = (index === sections.length - 1) ? "none" : "inline-block";
 
     const barra = document.getElementById("barraProgreso");
     if (barra) barra.style.width = ((index + 1) / sections.length) * 100 + "%";
 
-    const advertencia = document.getElementById("advertencia-check");
-    if (advertencia) advertencia.remove();
+    document.getElementById("advertencia-check")?.remove();
 
-    const seccionActual = sections[index];
-    const id = seccionActual.id;
+    const id = sections[index]?.id;
 
     if (id === "verificacion-cap1") {
       actualizarBotonSiguienteVerificacion();
-      seccionActual.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.addEventListener("change", actualizarBotonSiguienteVerificacion));
+      sections[index].querySelectorAll('input[type="checkbox"]').forEach(cb =>
+        cb.addEventListener("change", actualizarBotonSiguienteVerificacion)
+      );
     } else if (id === "reglamento") {
       actualizarBotonSiguienteReglamento();
       document.getElementById("checkReglamento")?.addEventListener("change", actualizarBotonSiguienteReglamento);
@@ -2591,7 +2647,7 @@ section ul li input[type="checkbox"] {
 
   function nextSection() {
     const seccionActual = sections[current];
-    const id = seccionActual.id;
+    const id = seccionActual?.id;
 
     if (id === "verificacion-cap1" && !todosMarcados(seccionActual)) {
       mostrarAdvertencia("⚠️ Por favor marca todos los ítems antes de continuar.");
@@ -2643,8 +2699,7 @@ section ul li input[type="checkbox"] {
   }
 
   function todosMarcados(seccion) {
-    const checks = seccion.querySelectorAll('input[type="checkbox"]');
-    return Array.from(checks).every(cb => cb.checked);
+    return Array.from(seccion.querySelectorAll('input[type="checkbox"]')).every(cb => cb.checked);
   }
 
   function activarBotonSiguiente() {
@@ -2712,24 +2767,20 @@ section ul li input[type="checkbox"] {
     }
   }
 
-document.addEventListener("DOMContentLoaded", () => {
-  actualizarSecciones();
+  document.addEventListener("DOMContentLoaded", () => {
+    actualizarSecciones();
 
-  document.getElementById("rolSeleccionado")?.addEventListener("change", filtrarContenidoPorRol);
+    document.getElementById("rolSeleccionado")?.addEventListener("change", filtrarContenidoPorRol);
 
-  document.querySelectorAll(".acordeon").forEach(btn => {
-    btn.addEventListener("click", function () {
-      this.classList.toggle("activo");
-      const panel = this.nextElementSibling;
-      panel.style.display = panel.style.display === "block" ? "none" : "block";
+    document.querySelectorAll(".acordeon").forEach(btn => {
+      btn.addEventListener("click", function () {
+        this.classList.toggle("activo");
+        const panel = this.nextElementSibling;
+        panel.style.display = panel.style.display === "block" ? "none" : "block";
+      });
     });
   });
-});
-
 </script>
-
-
-
 
 </body>
 </html>
