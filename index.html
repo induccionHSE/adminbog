@@ -3071,7 +3071,6 @@ section ul li input[type="checkbox"] {
 <script>
   let current = 0;
   let sections = [];
-  let quizCapitulo3Aprobado = false;
 
   function actualizarSecciones() {
     const rol = document.getElementById("rolSeleccionado")?.value;
@@ -3097,7 +3096,7 @@ section ul li input[type="checkbox"] {
   function filtrarContenidoPorRol() {
     const rol = document.getElementById("rolSeleccionado")?.value;
     document.querySelectorAll('[data-rol]').forEach(sec => sec.style.display = "none");
-    document.querySelectorAll([data-rol="${rol}"]).forEach(sec => sec.style.display = "block");
+    document.querySelectorAll(`[data-rol="${rol}"]`).forEach(sec => sec.style.display = "block");
     actualizarSecciones();
   }
 
@@ -3116,6 +3115,7 @@ section ul li input[type="checkbox"] {
     document.getElementById("advertencia-check")?.remove();
 
     const id = sections[index]?.id;
+
     if (id === "verificacion-cap1") {
       actualizarBotonSiguienteVerificacion();
       sections[index].querySelectorAll('input[type="checkbox"]').forEach(cb =>
@@ -3131,13 +3131,17 @@ section ul li input[type="checkbox"] {
       actualizarBotonSiguienteVial();
       document.getElementById("check-vial")?.addEventListener("change", actualizarBotonSiguienteVial);
     } else if (id === "quiz-capitulo3") {
-      if (quizCapitulo3Aprobado) {
-        activarBotonSiguiente();
-      } else {
-        desactivarBotonSiguiente();
-      }
-    } else if (id === "trivia-sgrl" || id === "trivia-seguridad-comportamiento" || id === "quiz-capitulo2") {
-      desactivarBotonSiguiente();
+      const aprobado = document.getElementById("resultadoQuizCap3")?.textContent.includes("¡Muy bien!");
+      aprobado ? activarBotonSiguiente() : desactivarBotonSiguiente();
+    } else if (id === "quiz-capitulo2") {
+      const aprobado = document.getElementById("resultadoQuizCap2")?.textContent.includes("¡Muy bien!");
+      aprobado ? activarBotonSiguiente() : desactivarBotonSiguiente();
+    } else if (id === "trivia-sgrl") {
+      const aprobado = document.getElementById("resultadoTrivia")?.textContent.includes("¡Muy bien!");
+      aprobado ? activarBotonSiguiente() : desactivarBotonSiguiente();
+    } else if (id === "trivia-seguridad-comportamiento") {
+      const aprobado = document.getElementById("resultadoTriviaSeguridad")?.textContent.includes("¡Muy bien!");
+      aprobado ? activarBotonSiguiente() : desactivarBotonSiguiente();
     } else {
       activarBotonSiguiente();
     }
@@ -3175,8 +3179,8 @@ section ul li input[type="checkbox"] {
       mostrarAdvertencia("⚠️ Debes responder correctamente todas las preguntas del quiz para continuar.");
       return;
     }
-    if (id === "quiz-capitulo3" && !quizCapitulo3Aprobado) {
-      mostrarAdvertencia("⚠️ Resuelve el quiz para continuar.");
+    if (id === "quiz-capitulo3" && !document.getElementById("resultadoQuizCap3")?.textContent.includes("¡Muy bien!")) {
+      mostrarAdvertencia("⚠️ Debes responder correctamente todas las preguntas del quiz para continuar.");
       return;
     }
 
@@ -3254,7 +3258,7 @@ section ul li input[type="checkbox"] {
     const respuestas = { q1: "c", q2: "b", q3: "b", q4: "b", q5: "b" };
     let correctas = 0;
     for (const [pregunta, correcta] of Object.entries(respuestas)) {
-      const seleccionada = document.querySelector(input[name="${pregunta}"]:checked);
+      const seleccionada = document.querySelector(`input[name="${pregunta}"]:checked`);
       if (seleccionada && seleccionada.value === correcta) correctas++;
     }
 
@@ -3276,7 +3280,7 @@ section ul li input[type="checkbox"] {
     const respuestas = { q1: "a", q2: "b", q3: "a", q4: "c", q5: "a" };
     let correctas = 0;
     for (const [pregunta, correcta] of Object.entries(respuestas)) {
-      const seleccionada = document.querySelector(input[name="${pregunta}"]:checked);
+      const seleccionada = document.querySelector(`input[name="${pregunta}"]:checked`);
       if (seleccionada && seleccionada.value === correcta) correctas++;
     }
 
@@ -3287,19 +3291,17 @@ section ul li input[type="checkbox"] {
       resultado.innerHTML = "✅ ¡Muy bien! Has respondido correctamente todas las preguntas.";
       resultado.style.color = "green";
       activarBotonSiguiente();
-      quizCapitulo3Aprobado = true;
     } else {
       resultado.innerHTML = "⚠️ Por favor responde correctamente todas las preguntas para continuar.";
       resultado.style.color = "red";
       desactivarBotonSiguiente();
-      quizCapitulo3Aprobado = false;
     }
   }
 
   function contarCorrectas(respuestas) {
     let aciertos = 0;
     for (const [p, val] of Object.entries(respuestas)) {
-      const r = document.querySelector(input[name="${p}"]:checked);
+      const r = document.querySelector(`input[name="${p}"]:checked`);
       if (r?.value === val) aciertos++;
     }
     return aciertos;
@@ -3331,8 +3333,6 @@ section ul li input[type="checkbox"] {
     });
   });
 </script>
-
-
 
 
 </body>
