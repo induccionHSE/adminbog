@@ -2972,6 +2972,7 @@ section ul li input[type="checkbox"] {
 <script>
   let current = 0;
   let sections = [];
+  let quizCap3Aprobado = false; // ✅ NUEVO FLAG
 
   function actualizarSecciones() {
     const rol = document.getElementById("rolSeleccionado")?.value;
@@ -3069,7 +3070,7 @@ section ul li input[type="checkbox"] {
       mostrarAdvertencia("⚠️ Debes responder correctamente todas las preguntas del quiz para continuar.");
       return;
     }
-    if (id === "quiz-capitulo3" && !document.getElementById("resultadoQuizCap3")?.textContent.includes("Obtuviste")) {
+    if (id === "quiz-capitulo3" && !quizCap3Aprobado) { // ✅ VALIDACIÓN CON FLAG
       mostrarAdvertencia("⚠️ Resuelve el quiz para continuar.");
       return;
     }
@@ -3132,41 +3133,9 @@ section ul li input[type="checkbox"] {
     document.getElementById("check-vial")?.checked ? activarBotonSiguiente() : desactivarBotonSiguiente();
   }
 
-  function validarTrivia() {
-    const respuestas = { p1: "c", p2: "b", p3: "c" };
-    let correctas = contarCorrectas(respuestas);
-    mostrarResultadoTrivia(correctas === 3, "resultadoTrivia");
-  }
+  function evaluarQuizCap3(event) {
+    if (event) event.preventDefault();
 
-  function validarTriviaSeguridad() {
-    const respuestas = { sc_p1: "c", sc_p2: "b", sc_p3: "b", sc_p4: "c" };
-    let correctas = contarCorrectas(respuestas);
-    mostrarResultadoTrivia(correctas === 4, "resultadoTriviaSeguridad");
-  }
-
-  function validarTriviaCapitulo2() {
-    const respuestas = { q1: "c", q2: "b", q3: "b", q4: "b", q5: "b" };
-    let correctas = 0;
-    for (const [pregunta, correcta] of Object.entries(respuestas)) {
-      const seleccionada = document.querySelector(`input[name="${pregunta}"]:checked`);
-      if (seleccionada && seleccionada.value === correcta) correctas++;
-    }
-
-    const resultado = document.getElementById("resultadoQuizCap2");
-    if (!resultado) return;
-
-    if (correctas === Object.keys(respuestas).length) {
-      resultado.innerHTML = "✅ ¡Muy bien! Has respondido correctamente todas las preguntas.";
-      resultado.style.color = "green";
-      activarBotonSiguiente();
-    } else {
-      resultado.innerHTML = "⚠️ Por favor responde correctamente todas las preguntas para continuar.";
-      resultado.style.color = "red";
-      desactivarBotonSiguiente();
-    }
-  }
-
-  function evaluarQuizCap3() {
     const respuestas = ['q1', 'q2', 'q3', 'q4', 'q5'];
     let correctas = 0;
 
@@ -3181,33 +3150,12 @@ section ul li input[type="checkbox"] {
     if (correctas >= 4) {
       resultado.innerHTML = `<p>✅ Obtuviste <strong>${correctas} de 5</strong> respuestas correctas.</p><p>¡Muy bien! Tienes una buena comprensión del cuidado ambiental. 🌿</p>`;
       resultado.style.color = "green";
+      quizCap3Aprobado = true; // ✅ MARCA COMO APROBADO
       activarBotonSiguiente();
     } else {
       resultado.innerHTML = `<p>⚠️ Obtuviste <strong>${correctas} de 5</strong> respuestas correctas.</p><p>Repasa el capítulo y vuelve a intentarlo. ♻️</p>`;
       resultado.style.color = "red";
-      desactivarBotonSiguiente();
-    }
-  }
-
-  function contarCorrectas(respuestas) {
-    let aciertos = 0;
-    for (const [p, val] of Object.entries(respuestas)) {
-      const r = document.querySelector(`input[name="${p}"]:checked`);
-      if (r?.value === val) aciertos++;
-    }
-    return aciertos;
-  }
-
-  function mostrarResultadoTrivia(esCorrecto, idResultado) {
-    const resultado = document.getElementById(idResultado);
-    if (!resultado) return;
-    if (esCorrecto) {
-      resultado.innerHTML = "🎉 ¡Muy bien! Has respondido correctamente todas las preguntas.";
-      resultado.style.color = "green";
-      activarBotonSiguiente();
-    } else {
-      resultado.innerHTML = "⚠️ Revisa tus respuestas. Debes acertar todas para continuar.";
-      resultado.style.color = "red";
+      quizCap3Aprobado = false;
       desactivarBotonSiguiente();
     }
   }
@@ -3226,6 +3174,7 @@ section ul li input[type="checkbox"] {
     });
   });
 </script>
+
 
 </body>
 </html>
